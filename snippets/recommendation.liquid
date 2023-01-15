@@ -6,7 +6,7 @@
         <a :href="'/products/' + product.handle" >
             <div class="product-card">
                 <div class="salebadge">30% OFF</div>
-       <img :src="product.featured_image " class="lazyload" :alt="product.title " >
+       <img :data-src="product.featured_image " class="lazy2 lazyload" :alt="product.title " >
         <div class="product-card-title">
             <h3>${product.title}</h3>
             <div class="d-flex justify-content-between align-items-center pb-3 ">
