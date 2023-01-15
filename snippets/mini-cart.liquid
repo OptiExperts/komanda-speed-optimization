@@ -1,0 +1,133 @@
+<div class="cart-form">
+    <template v-if="cart && cart.items.length > 0">
+        <div class="mini-cart-rows m-0 p-0">
+            <div class="d-flex justify-content-between menu-header pb-3">
+               <div class="yougood d-none" > 
+                    <div > You have a perfect taste. Bravo </div>
+                    </div>
+                <div class="open-cart-button"  @click="setT">
+                Your Cart (${cart.item_count})
+                </div>
+                <div class="x-button" @click="toggleMiniCart"> <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.10059 1L20.8996 20.799" stroke="#1B1C1D" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M20.7988 1L0.999839 20.799" stroke="#1B1C1D" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="freeship">
+                <template v-if="money(cart.total_price) <= 100  "> 
+               <div class="anonce"> You are ${freeship(cart.total_price)} {{ cart.currency.symbol  }} away from Free Shipping</div>
+                <div class="progress-line" >
+                    <div class="progress-bar" :style="{  width: money(cart.total_price) + '%' }" ></div>
+                </div>
+            </template>
+            <template v-else > 
+                <div class="anonce"> 🎉  You get Free Shipping!</div>
+                <div class="progress-line " style=" background-color: #8BF5C2; ">
+                </div>
+            </template>
+
+            </div>
+            <div class="mini-cart-item" v-for="item in cart.items">
+                <div class="mini-cart-image-wrapper" v-if="item.image">
+                    <a :href="item.url">
+                        <img :src="item.image" :alt="item.title">
+                    </a>
+
+                </div>
+                <div class="mini-cart-item-right">
+                    <div class="x-button" @click="remove(item)"> <svg width="10" height="10" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.10059 1L20.8996 20.799" stroke="#1B1C1D" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M20.7988 1L0.999839 20.799" stroke="#1B1C1D" stroke-width="2" stroke-linecap="round"/>
+                        </svg></div>
+                    <div class="mini-cart-title">
+                        <a :href="item.url" class="mini-titel" > ${item.product_title} </a> 
+                     <div  v-for="(option, i) in item.options_with_values" :key="i" >
+                      ${option.name}: ${option.value}
+                    </div>
+                    
+                       
+                    </div>
+                    <div class="d-flex justify-content-between pt-1">
+                        <div class="mini-cart-quantity">
+                            <input type="text" v-model="item.quantity" />
+                            <button class="mini-cart-quantity-button" @click="dicrement(item)">-</button>
+                            <button class="mini-cart-quantity-button"@click="increment(item)">+</button>
+                        </div>
+                        <div class="mini-cart-price">
+                            <span class="compare-price">${sale(item.price)}{{ cart.currency.symbol  }}</span>
+                            ${money(item.price)}{{ cart.currency.symbol  }}
+                        </div>
+                     
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="d-flex flex-column sum-field">
+            <div class="savings d-flex justify-content-between">
+                <p>product total:</p> 
+                <div class="sub-money " style="color:#1B1C1D;"> ${sale(cart.total_price)}{{ cart.currency.symbol  }} </div>
+            </div>
+            <div class="savings d-flex justify-content-between">
+                <p>savings:</p> 
+                <div class="sub-money " style="color:#1B1C1D;"> ${save(cart.total_price)}{{ cart.currency.symbol  }} </div>
+            </div>
+            <div class="checkout-subtotal d-flex justify-content-between">
+                <p>subtotal:</p> 
+                <div class="sub-money"> ${money(cart.total_price)}{{ cart.currency.symbol  }} </div>
+            </div> 
+            
+            <a href="/checkout" class="checkout-button"> secure checkout</a>
+            <div class="payment-methods d-flex justify-content-center pt-2">
+                <img  src="{{ 'apple.png' | asset_img_url: 'master' }}" alt="Buy Wall Art Online | applepay">
+                <img  src="{{ 'visa.png' | asset_img_url: 'master' }}" alt="Buy Modern wall art for living room | visa">
+                <img  src="{{ 'master.png' | asset_img_url: 'master' }}" alt="Modern canvas art | mastercard">
+                <img  src="{{ 'amex.png' | asset_img_url: 'master' }}" alt="Buy poster art | amex">
+                <img  src="{{ 'pp.png' | asset_img_url: 'master' }}" alt="Buy canvas & poster art | paypal">
+            </div>
+        <div class="contin pt-1" @click="toggleMiniCart">
+            keep shopping
+        </div>
+        </div>
+    </template>
+    <template v-else>
+        <div class="d-flex justify-content-between">
+            <div class="open-cart-button">
+            <a href="/cart/">Cart</a> 
+            </div>
+            <div class="x-button"  @click="toggleMiniCart"> <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.10059 1L20.8996 20.799" stroke="#1B1C1D" stroke-width="2" stroke-linecap="round"/>
+                <path d="M20.7988 1L0.999839 20.799" stroke="#1B1C1D" stroke-width="2" stroke-linecap="round"/>
+                </svg></div>
+        </div>
+        <div class="cart-empty-page d-flex flex-column justify-content-center align-items-center my-5"> 
+            <img src="{{ 'empty.png' | asset_img_url: 'master' }}" alt="Buy original canvas art online">
+            <h2> Your cart is empty </h2> 
+        </div>
+      
+        <div class="d-flex flex-wrap discover">
+            <h2> Discover our collections </h2> 
+            {% for collection in collections  %}
+            {% if collection.title contains "Best"  or collection.title contains "abstra" or collection.title contains "New" or collection.title contains "Trash"  %}
+            <div class="col-6 p-1">
+                <a href="{{collection.url}}">
+                <div class="product-card">
+                  <img  data-src="{{ collection.image | img_url: '720x'}}" data-srcset="{{ collection.image | img_url: '480x'}} 300w, {{ collection.image | img_url: '720x'}}600w,
+                  {{ collection.image | img_url: 'master'}} 900w" class="lazyload" alt="Buy {{ collection.title | escape}} canvas art" >
+                      <div class="product-card-title d-flex justify-content-between align-items-center">
+                          <h3>{{ collection.title | downcase }}</h3>  
+                         
+                      </div>
+                    </div>
+                  </a>
+              </div>
+              {% endif %}
+              {% endfor %}
+            </div>
+       
+  
+        
+    </template>
+</div>
+

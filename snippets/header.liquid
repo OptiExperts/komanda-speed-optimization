@@ -1,0 +1,129 @@
+
+<header class=" header d-flex justify-content-between py-2" id="header">
+    <a href="/" class="logo-link"> komanda.<span>gallery</span> </a>
+    <div class="d-flex flex-row">
+     <div class="cart-button-container pe-2" @click="toggleMiniCart">
+          <button class="cart-button">
+            <svg width="47" height="37" viewBox="0 0 47 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0.75" y="10.2959" width="45.5" height="36.9545" rx="9.25" stroke="white" stroke-width="1.5"/>
+              <path d="M32.4728 9.97273C32.4728 5.01723 28.4556 1 23.5001 1C18.5446 1 14.5273 5.01723 14.5273 9.97273" stroke="white" stroke-width="1.5"/>
+              </svg>
+             <span class="cart-button-text">
+               <template v-if ="cart">
+               ${cart.item_count}
+              </template>
+            </span>
+         </button>
+     </div>
+
+    <div class="menu">
+        <button class="menu-button" @click="toggleMenu">
+            ...
+        </button>
+    </div>
+    <div class="mini-cart"  :class="{hidden: miniCart}">
+     
+      {% render 'mini-cart'%}
+    </div>
+    <div class="menu-drawer" :class="{hidden: menuDrawer}">
+     
+      {% render 'menu-drawer'%}
+  </div>
+    </div>
+    <div class="outside" v-if="!miniCart || !menuDrawer" @click="closeAllDrawers"></div>
+
+</header>
+
+<script>
+
+  if(document.querySelector('#header')) {
+    const headerCart = Vue.createApp ({
+      delimiters: ['${', '}'],
+              data() {
+          
+                  return {
+                    open: true,
+                    cartData: store.state.cartState,
+                      
+                      }
+                     
+                  }, 
+                  methods: { 
+                    toggleMiniCart () {
+                      toggleMiniCart.openCart()
+                    },
+                    toggleMenu () {
+                      toggleMenu.openMenu()
+                    },
+                    closeAllDrawers () {
+                      toggleClose.closeAll()
+
+                    },
+                    increment(item) {
+                      const data = {
+                        "id":item.key,
+                        "quantity": item.quantity + 1
+                      }
+                      axios.post('/cart/change.js', data)
+                      .then(response => { store.getCart()
+                      })
+                      .catch(error => console.log (error))
+                       
+                    },
+                    dicrement(item) {
+                      const data = {
+                        "id":item.key,
+                        "quantity": item.quantity - 1
+                      }
+                      axios.post('/cart/change.js', data)
+                      .then(response => { store.getCart()
+                      })
+                      .catch(error => console.log (error))
+                       
+                    },
+                    remove(item) {
+                      const data = {
+                        "id":item.key,
+                        "quantity": item.quantity = 0
+                      }
+                      axios.post('/cart/change.js', data)
+                      .then(response => { store.getCart()
+                      })
+                      .catch(error => console.log (error))
+                       
+                    },
+                    money(value){
+                      if (!value) return 0 
+                      return (value/100)
+                    },
+                    freeship(value){
+                      if (!value) return 0 
+                      return (100 - value/100)
+                    },
+                    sale(value){
+                      if (!value) return 0 
+                      return Math.ceil(value/100 * 1.3)
+                    },
+                    save(value){
+                      if (!value) return 0 
+                      return Math.ceil((value/100 * 1.3) - value/100)
+                    }
+
+                  },
+                  computed: {
+                    miniCart(){
+                      return miniCartState.hidden
+                    },
+                    menuDrawer(){
+                      return menuState.hidden
+                    },
+                    cart() {
+                      return this.cartData[0]
+                    }
+                  },
+                  created(){
+                    store.getCart()
+                  }
+    }).mount('#header')
+  }
+</script>

@@ -1,0 +1,63 @@
+<div id="recom" class="container ">
+   <div class="row recommendation-container mb-3 mb-lg-5">
+    <h4>You may also like</h4>
+    <div v-for="product in products" class="col-6 col-md-3 py-1 py-md-3">
+        
+        <a :href="'/products/' + product.handle" >
+            <div class="product-card">
+                <div class="salebadge">30% OFF</div>
+       <img :src="product.featured_image " class="lazyload" :alt="product.title " >
+        <div class="product-card-title">
+            <h3>${product.title}</h3>
+            <div class="d-flex justify-content-between align-items-center pb-3 ">
+                <div class="product-card-price ">${money(product.price)}{{ cart.currency.symbol  }}</div>
+                <div class="add-button "> <span>See options</span> </div>
+            </div>
+
+        </div>
+        </a>
+    </div>
+   
+    
+    
+    </div>
+    </div>
+
+</div>
+<div class="d-flex justify-content-center pb-5">
+    <a class="big-button" href="/collections"> discover more</a>
+</div>
+
+ 
+<script>
+
+    if ( document.querySelector('#recom') ) {
+        const recommendationProduct = Vue.createApp({
+            delimiters: ['${', '}'],
+
+            data() {
+                return {
+                    name: "Recomendations",
+                    products: "",
+                   
+                }
+            },
+              
+            created(){
+                axios.get("/recommendations/products.json?product_id={{ product.id }}&limit=4")
+                .then(results => {
+               
+                    this.products = results.data.products
+                })
+            },
+            methods: {                     
+                money(value){
+                      if (!value) return 0 
+                      return (value/100)
+                    }
+                  
+              }
+   
+        }).mount('#recom')
+    }
+</script>

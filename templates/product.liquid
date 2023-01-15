@@ -1,0 +1,251 @@
+
+
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+<section  class="product-template ">
+  <div id="add-to-cart-form" class="container">
+    <div class="row">
+      <div class="col-lg-1 pt-4 d-none d-lg-block">
+        <span onclick="backButton()" class="arrow-back-page">
+          <svg width="16" height="12" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 9C21.5523 9 22 8.55228 22 8C22 7.44771 21.5523 7 21 7L21 9ZM0.292892 7.2929C-0.0976315 7.68342 -0.0976314 8.31659 0.292893 8.70711L6.65686 15.0711C7.04738 15.4616 7.68055 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34315C8.46159 1.95262 8.46159 1.31946 8.07107 0.928936C7.68054 0.538411 7.04738 0.538411 6.65685 0.928936L0.292892 7.2929ZM21 7L1 7.00001L1 9.00001L21 9L21 7Z" fill="#1B1C1D"/>
+            </svg>
+      </span>
+      </div>
+      <div class=" col-12 col-lg-6 product-image">
+        <div class="loader d-flex justify-content-center align-items-center"> 
+          <div id="sprite-image" > </div>
+        </div>
+        <div class="swiper-container-product-page">
+          <div class="swiper-wrapper" v-for="variant in variants"  v-if='showImage'>
+            <div v-if="selected[0] == variant.option1 && selected[1] == variant.option2" class="swiper-slide">
+              <img @click="toggleImage" @touchend="toggleImage" :src="variant.featured_image.src" alt="{{ product.title | escape}} | Buy Modern Art Prints Online" >
+              <div @click="toggleImage" class="swiper-button-next "></div>
+              <div @click="toggleImage" class="swiper-button-prev "></div>
+          </div>
+          
+          </div>
+        </div>
+        <div id="img-gallery" class="swiper-container-product-page swiper-container-{{- product.id -}}" :class="{ dnone: showImage }" style=" --swiper-pagination-color: #000">
+          <div class="swiper-wrapper">
+            
+            {% for image in product.images limit:3 %}
+            <div class="swiper-slide">
+              <img src="{{ image.src | img_url: '720x'}}" alt="{{ product.title | escape}} | Buy Canvas & Poster Art Online" >
+              <div class="swiper-button-next swiper-button-next-{{- product.id -}}"></div>
+              <div class="swiper-button-prev swiper-button-prev-{{- product.id -}}"></div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+    
+      </div>
+
+      <div class="product-decsription col-12 col-lg-5 col-xl-4 pt-lg-3">
+        <h1>{{ product.title }}</h1>
+      <a href="#love"><img src="{{ 'rating.png' | asset_img_url: '420x' }}" alt="Buy original canvas art">  4,7/5</a>
+       
+        {% render 'add-to-cart' %}
+      </div>
+    </div>
+    {% render 'description' %}
+  </div>
+
+{% render 'recommendation' %}
+
+
+</section>
+
+
+{% section 'whywe' %}
+
+
+  <script>
+    if ( document.querySelector('#add-to-cart-form') ) {
+     const productForm = Vue.createApp({
+         delimiters: ['${', '}'],
+         
+
+         data() {
+             return {
+                 open: false,
+                 showImage: false,
+                 modalIc: false,
+                 modalCm: true,
+                 xDown: null,
+                 yDown: null,
+                 modalOpen: 0,
+                 variants: "",
+                 selected: [],
+                 id:"",
+                 form: {
+                     selections: "",
+                     options: "",
+                     
+                 }
+                
+             }
+         },
+         mounted(){
+
+           const items = document.querySelectorAll('.accordion button');
+
+           function toggleAccordion() {
+           const itemToggle = this.getAttribute('aria-expanded');
+
+           for (i = 0; i < items.length; i++) {
+               items[i].setAttribute('aria-expanded', 'false');
+           }
+
+           if (itemToggle == 'false') {
+               this.setAttribute('aria-expanded', 'true');
+           }
+           }
+           items.forEach((item) => item.addEventListener('click', toggleAccordion));
+
+           
+
+           },
+           
+         created(){
+             axios.get("/products/{{ product.handle }}.js")
+             .then(results => {
+                console.log (results)
+                 this.form.options = results.data.options.map(item => ({...item, currentIndex: []}))
+                 this.variants = results.data.variants.map(item => ({...item, visible:false}))
+                 this.id = results.data.id
+                 results.data.options.map(item => this.selected.push(item.values[0]))
+                 this.form.selections = [
+                     this.selected[0] ? this.selected[0] : null,
+                     this.selected[1] ? this.selected[1] : null,
+                     this.selected[2] ? this.selected[2] : null
+                 ]
+             })
+         },
+         methods: {
+                   toggleImage: function () {
+               this.showImage = !this.showImage;
+             
+           },
+           openImage: function () {
+               this.showImage = true;
+           },
+           openMod: function () {
+               this.modalOpen = 1;
+               this.modalIc = true;
+              this.modalCm = false;
+
+           },
+           openCm: function () {
+               this.modalOpen = 0;
+               this.modalIc =false;
+              this.modalCm = true;
+           },
+           toggleMiniCart () {
+                 toggleMiniCart.openCart()
+               },
+
+           
+           money(value){
+                 if (!value) return 0 
+                 return (value/100)
+               },
+               sale(value){
+                      if (!value) return 0 
+                      return Math.ceil(value/100 * 1.3)
+                    },
+               save(value){
+                      if (!value) return 0 
+                      return Math.ceil((value/100 * 1.3) - value/100)
+                    },
+                    limited(value){
+                      if (!value) return 0 
+                      return String(value).slice(-2);
+                    },
+                    ten(value){
+                      if (value < 10) return Math.ceil(value + 1)
+                      else return value
+                    },
+
+               size(value){
+                 return (value.split('/')) 
+                
+               },
+               rever(arr, i){
+                if (arr.length < 2 ) return (arr.flatMap(i => [i,i]))
+                else return arr
+                 
+                
+               },
+               
+             
+             addToCart(event) {
+                 event.preventDefault()
+
+                 let selectedVarient
+
+                 this.variants.forEach((variant, i) => {
+                     if (variant.option1 === this.form.selections[0] && variant.option2 === this.form.selections[1] && variant.option3 === this.form.selections[2]) {
+                         selectedVariant = variant
+                     }
+                 })
+
+                 let data = {
+                     id: selectedVariant.id,
+                     quantity: 1
+                 }
+
+                 axios.post('/cart/add.js', data)
+                  .then((response) => {
+                      store.getCart()
+                  })
+                  .then(() => {
+                      toggleMiniCart.openCart()
+                  })
+                  .catch ((error) => {
+                      console.log(error)
+
+                  })
+
+             }
+         },
+         computed:{
+                somefunction(){
+                 return this.open=!this.open;
+ }
+
+}
+     }).mount('#add-to-cart-form')
+ }
+
+</script>
+
+<script>
+  
+  // swiper
+  new Swiper (".swiper-container-{{- product.id -}}", {
+      slidesPerView: 1,
+      centeredSlides: true,
+      spaceBetween: 0,
+      loop: true,
+      zoom: true,
+  
+      breakpoints: {
+        600: {
+          allowTouchMove: false,
+          speed: 0,
+          navigation: {
+           nextEl: '.swiper-button-next-{{- product.id -}}',
+            prevEl: '.swiper-button-prev-{{- product.id -}}',
+           },
+           zoom: {
+           maxRatio: 3,
+            minRatio: 1
+          },
+        }
+      }
+    })
+  </script>
+
+

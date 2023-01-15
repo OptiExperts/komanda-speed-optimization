@@ -1,0 +1,70 @@
+<div id="buy-modern-art-prints" class="product-list-bg pb-3 pb-lg-5">
+    <div class="container">
+        <div class="product-list-title text-left text-lowercase mb-3">
+            <h2 class="mainpage-headers">{{section.settings.title}} </h2>
+        </div>
+        {% assign collection = collections[section.settings.collection] %}
+  
+        <div class="row">
+           
+            {% render 'product-card' for collection.products as product %}
+    
+        </div>
+     
+    </div>
+    <div class="d-flex justify-content-center my-3">
+        <span id="load-more" class="big-button"> see more</span>
+    </div>
+</div>    
+<script>
+    const wrapper = document.querySelectorAll('.product-card-wrapper');
+    let timing = 12;
+    let coltotal = "{{ collection.all_products_count }}"
+    const btn = document.getElementById('load-more')
+    btn.addEventListener('click', function() {
+   for ( var i = timing; i < timing + 8; i++) {
+    if (wrapper[i]) {
+        wrapper[i].style.display = 'block';
+    }
+   }  
+   timing += 8; 
+   if (timing > coltotal) {
+        btn.style.display ="none";
+    }  
+
+    })
+   
+</script>
+{% schema %}
+{
+    "name": "Product List",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Canvas"
+        },
+         {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+        },
+
+         {
+            "type": "range",
+            "id": "product_limit",
+            "label": "Product Limit",
+            "min": 4,
+            "max": 12,
+            "default": 8
+        }
+    ],
+
+    "presets": [{
+        "name": "Product List Section",
+        "category": "Product List Section"
+      }]
+}
+
+{% endschema %}

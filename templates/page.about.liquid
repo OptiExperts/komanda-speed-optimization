@@ -1,0 +1,55 @@
+<div class="about-us">
+    <div class="about-1-us">
+        <div class="container py-3">
+            <div class="row">
+                <div class="col-12 col-lg-6 about-us-green ">
+                   <h1> {{settings.about-head1}} </h1>
+                    <img  data-src="{{ 'about-1.png' | asset_img_url: '720x'}}"
+                    data-srcset="{{ 'about-1.png' | asset_img_url: '480x'}} 300w,
+                    {{ 'about-1.png' | asset_img_url: '720x'}}600w,
+                    {{ 'about-1.png'| asset_img_url: 'master'}} 900w" class="lazyload img-fluid" alt="Modern art prints">
+                </div>
+                <div class="col-12 col-lg-6 p-lg-5">
+                    {{settings.about-text1}}</div>
+            </div>
+
+        </div>
+    </div>
+    <div class="about-2-us">
+        <div class="about-2-us-bg">
+            <div class="container py-3">
+                <div class="row">
+                    <div class="col-12 col-lg-5 px-lg-3">
+                        <h2>{{settings.about-head2}}</h2>
+                        {{settings.about-text2}}
+                    </div>
+                    <div class="col-12 col-lg-7 text-center p-lg-5 ">
+                        <img  data-src="{{ 'about-2.png' | asset_img_url: '720x'}}"
+                        data-srcset="{{ 'about-2.png' | asset_img_url: '480x'}} 300w,
+                        {{ 'about-2.png' | asset_img_url: '720x'}}600w,
+                        {{ 'about-2.png'| asset_img_url: 'master'}} 900w" class="lazyload img-fluid p-5" alt="Original canvas art">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="about-3-us pt-4">
+        <div class="container py-3">
+            <div class="row">
+                <div class="col-12 col-lg-8 d-flex  flex-column flex-lg-row pe-5">
+                    <h2 >{{settings.about-head3}}</h2>
+                    <img  data-src="{{ 'about-3.png' | asset_img_url: '720x'}}"
+                    data-srcset="{{ 'about-3.png' | asset_img_url: '480x'}} 300w,
+                    {{ 'about-3.png' | asset_img_url: '720x'}}600w,
+                    {{ 'about-3.png'| asset_img_url: 'master'}} 900w" class="lazyload img-fluid p-2 p-md-5" alt="Modern art canvas paintings">
+                </div>
+                <div class="col-12 col-lg-4 pt-lg-3 ">
+    
+                    {{settings.about-text3}}
+   </div>
+            </div>
+
+        </div>
+    </div>
+</div>

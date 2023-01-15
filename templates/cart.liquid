@@ -1,0 +1,208 @@
+<section id="cart" >
+  <div class="container">
+  <a href="/"> <span class="arrow-back-page">
+      <svg width="16" height="12" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21 9C21.5523 9 22 8.55228 22 8C22 7.44771 21.5523 7 21 7L21 9ZM0.292892 7.2929C-0.0976315 7.68342 -0.0976314 8.31659 0.292893 8.70711L6.65686 15.0711C7.04738 15.4616 7.68055 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34315C8.46159 1.95262 8.46159 1.31946 8.07107 0.928936C7.68054 0.538411 7.04738 0.538411 6.65685 0.928936L0.292892 7.2929ZM21 7L1 7.00001L1 9.00001L21 9L21 7Z" fill="#1B1C1D"/>
+        </svg>
+  </span></a> 
+  <span id="mobbtn" class=" d-block d-md-none"  @click="toggleMiniCart"> </span>
+    <template v-if="cart && cart.items.length > 0">
+<div   class=" d-block d-md-none d-flex justify-content-center align-items-center"  style="height: 30vh;">
+
+  <a href="/" class="checkout-button px-5"> continue shopping</a>
+
+</div>
+    <div class="desktop-cart d-none d-md-block">
+      <div class=" d-flex justify-content-between" v-if ="cart">
+    <div class="cart-head" v-if="cart.item_count === 1">  You have ${cart.item_count} item in your cart </div>
+    <div class="cart-head" v-else >  You have ${cart.item_count} items in your cart </div>
+      <a class="cart-margin remove-all " href="/cart/clear">Remove all items</a> 
+    
+      </div>
+   
+    
+        
+    <div class="cart-table d-flex " v-for="item in cart.items" >
+          <div class="image-and-titel d-flex justify-content-start py-3" v-if="item.image"> 
+            <a :href="item.url">
+              <img :src="item.image" :alt="item.title" >
+            </a>
+          </div>
+          <div class=" image-and-titel d-flex align-items-center" >
+            <a :href="item.url" class="mini-titel" > ${item.product_title} </a> 
+          </div> 
+        
+     
+          <div class="type-and-size d-flex align-items-center "  >
+            <div class="d-flex flex-column">
+            <div  v-for="(option, i) in item.options_with_values" :key="i">
+              ${option.name}: <span style="font-weight: 700; font-family: 'Aeroport Mono';"> ${option.value}</span>
+              </div> 
+              </div>
+          </div>
+      
+          <div class="quantity d-flex align-items-center justify-content-end " >
+          <div class="mini-cart-quantity">
+            <input type="text" v-model="item.quantity" />
+            <button class="mini-cart-quantity-button" @click="dicrement(item)">-</button>
+            <button class="mini-cart-quantity-button"@click="increment(item)">+</button>
+        </div>
+        </div>
+        <div class=" d-flex align-items-center cart-money justify-content-end">
+          ${money(item.price)} {{ cart.currency.symbol  }}
+        </div>
+        <div class="d-flex align-items-center remove justify-content-end "  @click="remove(item)">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.10059 1L20.8996 20.799" stroke="#1B1C1D" stroke-width="2" stroke-linecap="round"/>
+            <path d="M20.7988 1L0.999839 20.799" stroke="#1B1C1D" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </div>
+      </div>
+    
+
+
+    <div class="checkout-subtotal d-flex justify-content-between py-3 cart-margin" >
+      <div class="cart-left"> Use your promocode at the next step</div>       
+      <div class="cart-right d-flex">    
+              <p>Subtotal:</p> 
+                  <div class="sub-money " > ${money(cart.total_price)} {{ cart.currency.symbol  }} </div>
+            </div> 
+    </div> 
+      <div class="text-center mr-3 cart-margin">
+        <a href="/checkout" class="checkout-button px-5"> secure checkout</a>
+        <div class="payment-methods d-flex justify-content-center pt-2" style="gap: 2px;">
+          <img  src="{{ 'apple.png' | asset_img_url: 'master' }}" alt="Buy Wall Art Online | applepay">
+          <img  src="{{ 'visa.png' | asset_img_url: 'master' }}" alt="Buy Modern wall art for living room | visa">
+          <img  src="{{ 'master.png' | asset_img_url: 'master' }}" alt="Modern canvas art | mastercard">
+          <img  src="{{ 'amex.png' | asset_img_url: 'master' }}" alt="Buy poster art | amex">
+          <img  src="{{ 'pp.png' | asset_img_url: 'master' }}" alt="Buy canvas & poster art | paypal">
+      </div>
+    </div>
+              
+
+
+  </div>
+  </template>
+
+  <template v-else>
+    <div class="cart-empty-page d-flex flex-column justify-content-center align-items-center mt-5"> 
+      <img  src="{{ 'empty.png' | asset_img_url: 'master' }}" alt="">
+      <h2 class="mb-5"> Your cart is empty </h2> 
+     
+     
+      <div class="container pt-5">
+          <div class="row">
+            <h4>discover our collections</h4>
+            {% for collection in collections  limit:4%}
+<div class="col-6 col-lg-3 pt-3">
+    <a href="{{collection.url}}">
+    <div class="product-card">
+      <img src="{{ collection.image | img_url: 'master'}}" alt="{{ product.title | escape}}" >
+          <div class="product-card-title d-flex justify-content-between align-items-center py-3">
+              <h3>{{ collection.title | downcase }}</h3>  
+              <span class="arrow-front-page">
+                <svg width="16" height="12" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 7C0.447715 7 -9.65645e-08 7.44772 0 8C9.65645e-08 8.55228 0.447715 9 1 9L1 7ZM21.7071 8.7071C22.0976 8.31658 22.0976 7.68341 21.7071 7.29289L15.3431 0.92893C14.9526 0.538405 14.3195 0.538405 13.9289 0.92893C13.5384 1.31945 13.5384 1.95262 13.9289 2.34314L19.5858 8L13.9289 13.6569C13.5384 14.0474 13.5384 14.6805 13.9289 15.0711C14.3195 15.4616 14.9526 15.4616 15.3431 15.0711L21.7071 8.7071ZM1 9L21 9L21 7L1 7L1 9Z" fill="#1B1C1D"/>
+                  </svg>
+                  
+            </span>
+          </div>
+        </div>
+      </a>
+  </div>
+  {% endfor %}
+            </div>
+      </div>
+      <div class="d-flex justify-content-center mt-5">
+        <a class="big-button" href="/collections"> see more</a>
+    </div>
+    </div>
+     
+  </template>
+  </div>
+</section>
+<script>
+
+  if(document.querySelector('#cart')) {
+    const headerCart = Vue.createApp ({
+      delimiters: ['${', '}'],
+              data() {
+          
+                  return {
+                      cartData: store.state.cartState,
+                   
+                      }
+                     
+                  }, 
+                  mounted(){
+
+                    const mobbtn = document.querySelector('#mobbtn');
+                   function clickb2b() {
+                    if ( window.innerWidth < 600) {
+                      mobbtn.click();
+                    }
+                       
+                            }
+                        clickb2b()
+
+                      },
+                  methods: { 
+                    toggleMiniCart () {
+                      toggleMiniCart.openCart()
+                    },
+                    increment(item) {
+                      const data = {
+                        "id":item.key,
+                        "quantity": item.quantity + 1
+                      }
+                      axios.post('/cart/change.js', data)
+                      .then(response => { store.getCart()
+                      })
+                      .catch(error => console.log (error))
+                       
+                    },
+                    dicrement(item) {
+                      const data = {
+                        "id":item.key,
+                        "quantity": item.quantity - 1
+                      }
+                      axios.post('/cart/change.js', data)
+                      .then(response => { store.getCart()
+                      })
+                      .catch(error => console.log (error))
+                       
+                    },
+                    remove(item) {
+                      const data = {
+                        "id":item.key,
+                        "quantity": item.quantity = 0
+                      }
+                      axios.post('/cart/change.js', data)
+                      .then(response => { store.getCart()
+                      })
+                      .catch(error => console.log (error))
+                       
+                    },
+                  
+                    money(value){
+                      if (!value) return 0 
+                      return (value/100)
+                    }
+
+                  },
+                 
+                  computed: {
+                    miniCart(){
+                      return !miniCartState.hidden
+                    },
+                    cart() {
+                      return this.cartData[0]
+                    }
+                  },
+                 
+                  created(){
+                    store.getCart()
+                  }
+    }).mount('#cart')
+  }
+</script>

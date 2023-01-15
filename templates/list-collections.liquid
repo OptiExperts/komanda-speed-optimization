@@ -1,0 +1,53 @@
+
+<div class="collection-list-wrapper">
+  <div class="container py-5">
+    <div class="row ">
+    <h1>Art Pieces By Room</h1>
+    {% for collection in collections %}
+      {% if collection.title contains "room"  or collection.title == "Kitchen" or collection.title contains "Office" %}
+        
+<div class="col-6 col-lg-3 pt-3">
+  <a href="{{collection.url}}">
+  <div class="product-card">
+    <img src="{{ collection.image | img_url: 'master'}}" alt="{{ product.title | escape}}" >
+        <div class="product-card-title d-flex justify-content-between align-items-center py-1 py-md-3">
+            <h3>{{ collection.title | downcase }}</h3>  
+            <span class="arrow-front-page">
+              <svg width="16" height="12" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 7C0.447715 7 -9.65645e-08 7.44772 0 8C9.65645e-08 8.55228 0.447715 9 1 9L1 7ZM21.7071 8.7071C22.0976 8.31658 22.0976 7.68341 21.7071 7.29289L15.3431 0.92893C14.9526 0.538405 14.3195 0.538405 13.9289 0.92893C13.5384 1.31945 13.5384 1.95262 13.9289 2.34314L19.5858 8L13.9289 13.6569C13.5384 14.0474 13.5384 14.6805 13.9289 15.0711C14.3195 15.4616 14.9526 15.4616 15.3431 15.0711L21.7071 8.7071ZM1 9L21 9L21 7L1 7L1 9Z" fill="#1B1C1D"/>
+                </svg>
+                
+          </span>
+        </div>
+      </div>
+    </a>
+</div>
+      {% endif %}
+    {% endfor %}
+      </div>
+      <div class="row pt-3">
+        <h2>Art Pieces By Style</h1>
+        {% for collection in collections %}
+        {% unless collection.title contains "room" or collection.title contains "All Art" or collection.title == "Kitchen" or collection.title contains "Office" or collection.title contains "New" or collection.title contains "Best"%}
+
+<div class="col-6 col-lg-3 pt-3">
+  <a href="{{collection.url}}">
+  <div class="product-card">
+    <img src="{{ collection.image | img_url: 'master'}}" alt="{{ product.title | escape}}" >
+        <div class="product-card-title d-flex justify-content-between align-items-center py-1 py-md-3">
+            <h3>{{ collection.title | downcase }}</h3>  
+            <span class="arrow-front-page">
+              <svg width="16" height="12" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 7C0.447715 7 -9.65645e-08 7.44772 0 8C9.65645e-08 8.55228 0.447715 9 1 9L1 7ZM21.7071 8.7071C22.0976 8.31658 22.0976 7.68341 21.7071 7.29289L15.3431 0.92893C14.9526 0.538405 14.3195 0.538405 13.9289 0.92893C13.5384 1.31945 13.5384 1.95262 13.9289 2.34314L19.5858 8L13.9289 13.6569C13.5384 14.0474 13.5384 14.6805 13.9289 15.0711C14.3195 15.4616 14.9526 15.4616 15.3431 15.0711L21.7071 8.7071ZM1 9L21 9L21 7L1 7L1 9Z" fill="#1B1C1D"/>
+                </svg>
+                
+          </span>
+        </div>
+      </div>
+    </a>
+</div>
+        {% endunless %}
+    {% endfor %}
+          </div>
+</div>
+  

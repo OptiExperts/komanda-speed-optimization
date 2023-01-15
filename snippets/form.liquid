@@ -1,0 +1,18 @@
+{% form 'customer' %}
+{{ form.errors | default_errors }}
+{% if form.posted_successfully? %}
+  <p>Thank you and welcome in Komanda Crew </p>
+{% else %}
+  <input type="hidden" name="contact[tags]" value="newsletter">
+  <input type="email"
+    name="contact[email]"
+    id="Email"
+    value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
+    placeholder="Enter your email address"
+    autocorrect="off"
+    autocapitalize="off">
+  <button type="submit" name="commit" id="Subscribe">
+    <span>sing up free</span>
+  </button>
+{% endif %}
+{% endform %}

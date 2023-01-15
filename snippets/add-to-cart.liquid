@@ -1,0 +1,52 @@
+
+<div class="add-to-cart-form" >
+    
+   
+
+        
+  <span class="size-chart-button" @click="openMod" :class="{ dnone: modalIc }"> change to inches</span>
+  <span class="size-chart-button" @click="openCm" :class="{ dnone: modalCm }"> change to cm</span>
+    
+    <template v-for="(option, i) in form.options" :key="i"> 
+      
+        <div>
+            {% render 'product-option-row' %}
+          </div>
+    </template>
+   
+   
+
+
+     <template v-for="variant in variants">
+      
+        <div @click="openMod" class="d-flex align-items-center justify-content-between py-1" v-if="selected[0] == variant.option1 && selected[1] == variant.option2" >
+          <div class="limited">
+          only  ${ten(limited(variant.id))} of 100 left
+          </div>
+        <div> <span class="compare-price">  ${sale(variant.price)}{{ cart.currency.symbol  }} </span> <span class="save-price">(save  ${save(variant.price)}{{ cart.currency.symbol  }} now)</span></div>
+        </div>
+      </template>
+
+  
+    
+   <template  v-for="variant in variants" >
+
+     <button @click="addToCart" v-if="selected[0] == variant.option1 && selected[1] == variant.option2"  :disabled="!variant.available"
+    :class="{ disabledButton: !variant.available }"  type="submit" name="add" id="AddToCart"> <span class="product-price">  ${money(variant.price)}{{ cart.currency.symbol  }} </span> Add to cart </button>
+  
+   </template>
+
+  
+    <div class="shipping pt-2">
+      <img  src="{{ 'freed.png' | asset_img_url: 'master' }}" alt="Buy canvas & poster art | paypal"> Free EU, UK & US shipping after 100{{ cart.currency.symbol  }} 
+    </div>
+
+
+            
+                
+
+    </div>
+  
+   
+
+   

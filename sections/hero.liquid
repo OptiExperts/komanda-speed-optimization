@@ -1,0 +1,40 @@
+<div class="hero">
+<div id="herosprite-image" > </div>
+<div class="hero-text">
+<h1>{{section.settings.titel}}</h1>
+<h3>{{section.settings.subtitle}}</h3>
+<div class="text-center pt-3">
+<a class="checkout-button" href="/#buy-modern-art-prints"> {{section.settings.btn}}</a>
+</div>
+</div>
+</div>
+
+{% schema %}
+{
+ "name": "Hero",
+ "settings": [
+ {
+   "type": "text",
+   "id": "titel",
+   "label": "Titel"
+ },
+ {
+     "type": "text",
+     "id": "btn",
+     "label": "Button"
+   },
+ {
+   "type": "text",
+   "id": "subtitle",
+   "label": "Subtitle"
+ }
+],
+
+      "presets": [{
+           "name": "Hero Section",
+           "category": "Hero Section"
+         }]
+ }
+
+
+{% endschema %}

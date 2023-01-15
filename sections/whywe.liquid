@@ -1,0 +1,123 @@
+<h5 class="testi-title">Artful customer love</h5>
+<div id="love" class="testimonial">
+  {% for block in section.blocks %}
+    <div class="testimonial-card">
+      <div class="review-text">
+        <span class="name">{{ block.settings.titel }}
+          <svg
+            width="27"
+            height="27"
+            viewBox="0 0 27 27"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <circle
+              cx="13.5"
+              cy="13.5"
+              r="12"
+              fill="#8CF5C2"
+              stroke="#8CF5C2"
+              stroke-width="3" />
+            <path
+              d="M7 11.5L13.4 19L24 3"
+              stroke="white"
+              stroke-width="3"
+              stroke-linecap="round" />
+          </svg>
+        </span>
+
+        <div class="starts">
+          <span class="date">{{ block.settings.newdate }}</span><img src="{{block.settings.stars | img_url: '420x' }}" alt="Buy modern canvas art">
+        </div>
+        <div class="review-words">
+          {{ block.settings.descritption }}
+        </div>
+
+      </div>
+      <div class="review-image">
+        <img src="{{block.settings.photo | img_url: '200x' }}" alt="Buy original canvas art">
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% schema %}
+  {
+    "name": "Reviews",
+
+    "blocks": [
+      {
+        "name": "Sections",
+        "type": "slie",
+        "settings": [
+          {
+            "type": "text",
+            "id": "titel",
+            "label": "Name"
+          },
+          {
+            "type": "text",
+            "id": "newdate",
+            "label": "Date"
+          },
+          {
+            "type": "image_picker",
+            "id": "stars",
+            "label": "Stars"
+          },
+          {
+            "type": "image_picker",
+            "id": "photo",
+            "label": "Photo"
+          }, {
+            "type": "text",
+            "id": "descritption",
+            "label": "Description"
+          }
+        ]
+      }
+    ],
+
+
+    "presets": [
+      {
+        "name": "Reviews Section",
+        "category": "Review Sections"
+      }
+    ]
+  }
+{% endschema %}
+
+<script>
+  const slider = document.querySelector('.testimonial');
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  slider.addEventListener('mousedown', (e) => {
+    isDown = true;
+    slider.classList.add('active');
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+  });
+  slider.addEventListener('mouseleave', () => {
+    isDown = false;
+    slider.classList.remove('active');
+  });
+  slider.addEventListener('mouseup', () => {
+    isDown = false;
+    slider.classList.remove('active');
+  });
+  slider.addEventListener('mousemove', (e) => {
+    if (! isDown) 
+      return;
+    
+
+
+
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 3; // scroll-fast
+    slider.scrollLeft = scrollLeft - walk;
+
+  });
+</script>

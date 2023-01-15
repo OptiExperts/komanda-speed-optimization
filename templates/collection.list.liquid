@@ -1,0 +1,56 @@
+<div class="collection-wrapper">
+  <div class="container pt-2">
+    <h1 class="mainpage-headers">shop by colections</h1>
+    <div class="main-collection-circles py-4">
+      {% for collection in collections %}
+        {% unless collection.title contains "room" or collection.title contains "All Art" or collection.title == "Kitchen" or collection.title contains "Office" %}
+          <div class="circle-wrapper">
+            <a href="{{collection.url}}">
+              <div class="collection-image">
+                <img
+                  data-src="{{ collection.image.src | collection_img_url: '100x' }}"
+                  class="lazyload"
+                  alt="{{collection.title}} | Buy modern canvas & posters art  " />
+              </div>
+            </a>
+            <a href="{{collection.url}}">
+              <div class="collection-title text-center">
+                {{ collection.title }}
+              </div>
+            </a>
+          </div>
+        {% endunless %}
+      {% endfor %}
+    </div>
+    <h3 class="mainpage-headers">shop by rooms</h3>
+    <div id="rooms" class="main-collection-circles ">
+      {% for collection in collections %}
+        {% if collection.title contains "room" or collection.title == "Kitchen" or collection.title contains "Office" %}
+          <div class="circle-wrapper pt-2">
+            <a href="{{collection.url}}">
+              <div class="rooms-image">
+                <img
+                  data-src="{{ collection.image.src | collection_img_url: '420x' }}"
+                  class="lazyload"
+                  alt="{{collection.title}} | Buy modern canvas & posters art  " />
+              </div>
+            </a>
+            <a href="{{collection.url}}">
+              <div class="collection-title text-center">
+                {{ collection.title }}
+              </div>
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+  </div>
+  <div class="container py-4">
+    <h3 class="mainpage-headers">{{ collection.title }}</h3>
+
+    <div class="row pt-2">
+      {% render 'product-card' for collection.products as product %}
+    </div>
+  </div>
+</div>

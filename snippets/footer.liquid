@@ -1,0 +1,91 @@
+<footer>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <h6> Komanda's Club </h6>
+<p> Want to learn about the artists, new original pieces, upcoming events, discounts, and giveaways? Sign-up for the exclusive Komanda Club newsletter today!</p>
+{% render 'form' %}
+      </div>
+      <div class="col-12 d-lg-none">
+        <div class="footer-extra container">
+            <div class="row">
+                <div class="col-6">
+                    <h5>Fast, Secure Delivery</h5>
+                    <div class="delivery">
+                        <img  src="{{ 'dhl.png' | asset_img_url: '100x' }}" alt="Buy original canvas art">
+                        </div>
+                </div>
+                <div class="col-6">
+                    <h5>Let's go social:</h5>
+                    <ul class="social-link">
+                        <li><a href="https://www.facebook.com/profile.php?id=100085748357746">Facebook</a></li>
+                        <li><a href="https://www.instagram.com/komanda.gallery/">Instagram</a></li>
+                        <li> <a href="https://www.pinterest.com/komandagallery/">Pinterest</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+      </div>
+        <div class="col-6 col-lg-2">
+            <ul class="site-pages">
+                {% for link in linklists.main-menu.links %} 
+                <li>
+                    {% assign child_list_handle = link.title | handleize %}
+                    {% if linklists[child_list_handle].links != blank %}
+                    <a href="{{ link.url }}">{{ link.title }}</a>
+                    [{% for childlink in linklists[child_list_handle].links %}
+                        <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                    {% endfor %}]
+                    {% else %}
+                    <a href="{{ link.url }}">{{ link.title }}</a>
+                    {% endif %}
+                </li>
+                {% endfor %}
+        
+            </ul>
+        </div>
+        <div class="col-6 col-lg-2">
+            <ul class="policy-pages">
+                {% for link in linklists.footer.links %}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>   
+                     {% endfor %} 
+            </ul>
+        </div>
+        <div class="col-12 d-block d-md-none">
+            <div class="payment-methods d-flex justify-content-between">
+                <img  src="{{ 'apple.png' | asset_img_url: 'master' }}" alt="Buy Original canvas & poster art | apple">
+                <img  src="{{ 'visa.png' | asset_img_url: 'master' }}" alt="Buy canvas art | visa">
+                <img  src="{{ 'master.png' | asset_img_url: 'master' }}" alt="Buy poster art | master card">
+                <img  src="{{ 'amex.png' | asset_img_url: 'master' }}" alt="Buy original poster art | amex">
+                <img  src="{{ 'pp.png' | asset_img_url: 'master' }}" alt="Buy canvas & poster art | paypal">
+            </div>
+        </div>
+        
+        <div class="col-2 d-none d-lg-block">
+            <ul class="social-link">
+                <b>Let's go social:</b>
+                <li><a href="https://www.facebook.com/people/Komandagallery/100085748357746/">Facebook</a></li>
+                <li><a href="https://www.instagram.com/komanda.gallery/"> Instagram</a></li>
+                <li> <a href="https://www.pinterest.com/komandagallery/">Pinterest</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="last-row-footer d-flex justify-content-between">
+    <div class="copy-text"> ©komanda.gallery 2022</div>
+    <div class="delivery d-none d-lg-block">
+        <img  src="{{ 'dhl.png' | asset_img_url: '100x' }}" alt="Buy original canvas art">
+    </div>
+    <div class="payment-methods d-none d-md-block">
+        <img  src="{{ 'apple.png' | asset_img_url: 'master' }}" alt="Buy Original canvas & poster art | apple">
+        <img  src="{{ 'visa.png' | asset_img_url: 'master' }}" alt="Buy canvas art | visa">
+        <img  src="{{ 'master.png' | asset_img_url: 'master' }}" alt="Buy poster art | master card">
+        <img  src="{{ 'amex.png' | asset_img_url: 'master' }}" alt="Buy original poster art | amex">
+        <img  src="{{ 'pp.png' | asset_img_url: 'master' }}" alt="Buy canvas & poster art | paypal">
+    </div>
+
+
+</div>
+
+</footer>

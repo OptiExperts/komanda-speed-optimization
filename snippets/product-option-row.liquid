@@ -1,0 +1,30 @@
+
+<div class="product-option-row  py-1" >
+    <div class="product-option-label" > 
+       Choose ${option.name}: 
+      </div>
+    </div>
+    
+    <div @click="openImage" class="product-option-list " >
+        <template v-for="(value, index) in option.values">
+            <div class="product-option-item variantBtn"
+            v-bind:class="{clicked: index==option.currentIndex}"
+                @click="
+                selected[i] = value;
+                option.currentIndex = index;
+                form.selections[i] = value;
+              
+                "
+                 >
+                <span style="word-break: keep-all;"> ${rever(size(value))[modalOpen]}  </span> 
+                
+            </div>  
+
+        </template>
+
+    </div>
+</div>
+
+{%- comment -%}
+
+{%- endcomment -%}

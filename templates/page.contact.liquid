@@ -1,0 +1,59 @@
+<section class="contact-us">
+  <div class="d-flex flex-lg-row flex-column">
+    <div class="col-12 col-lg-6 ">
+      <div class="left-contact-wrapper ">
+        <h1>{{ settings.contact-head1 }}</h1>
+        <p>
+          {{ settings.contact-text1 }}</p>
+        <div class="d-flex justify-content-lg-start justify-content-center">
+          <a class="white-button" href="mailto:sonia@komanda.studio">{{ settings.contactcta }}</a>
+        </div>
+      </div>
+      <div class="follow-section ">
+
+        <h5>Follow us</h5>
+        <a href="https://www.instagram.com/komanda.gallery/">
+          <img src="{{ 'insta.png' | asset_img_url: 'master' }}" alt="buy canvas art">
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=100085748357746">
+          <img src="{{ 'facebook.png' | asset_img_url: 'master' }}" alt="buy posters online ">
+        </a>
+        <a href="https://www.pinterest.com/komandagallery/">
+          <img src="{{ 'pin.png' | asset_img_url: 'master' }}" alt="orginal canvas art">
+        </a>
+
+      </div>
+
+    </div>
+    <div class="contact-form-wrapper col-12 col-lg-6 order-lg-last order-first">
+      <h2>{{ settings.formhead }}</h2>
+      <p>{{ settings.formtext }}
+      </p>
+      {% form 'contact' %}
+        {% if form.posted_successfully? %}
+          Thank you for your contact
+        {% endif %}
+        {{ form.errors | default_errors }}
+        <input
+          type="text"
+          placeholder="Enter your name"
+          id="ContactFormName"
+          name="contact[name]">
+        <input
+          type="email"
+          placeholder="Enter your email address"
+          id="ContactFormEmail"
+          name="contact[email]">
+        <textarea
+          rows="5"
+          placeholder="Enter your message"
+          id="ContactFormMessage"
+          name="contact[body]"></textarea>
+
+        <input type="submit" value="{{settings.formcta}} ">
+      {% endform %}
+
+    </div>
+  </div>
+
+</section>

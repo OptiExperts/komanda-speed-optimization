@@ -1,0 +1,50 @@
+<div class="menu-drawer-inner">
+    <div class="d-flex justify-content-between menu-header">
+        <div class="open-menu-button pb-3">
+        Menu 
+        </div>
+        <div class="x-button "  @click="toggleMenu"> <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.10059 1L20.8996 20.799" stroke="#1B1C1D" stroke-width="2" stroke-linecap="round"/>
+            <path d="M20.7988 1L0.999839 20.799" stroke="#1B1C1D" stroke-width="2" stroke-linecap="round"/>
+            </svg></div>
+    </div>
+    <nav>
+    <ul class="navigation-menu">
+        {% for link in linklists.main-menu.links %} 
+        <li>
+            {% assign child_list_handle = link.title | handleize %}
+            {% if linklists[child_list_handle].links != blank %}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+            [{% for childlink in linklists[child_list_handle].links %}
+                <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+            {% endfor %}]
+            {% else %}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="d-flex flex-wrap ">
+    {% for collection in collections  %}
+    {% if collection.title contains "Best"  or collection.title contains "abstra" or collection.title contains "New" or collection.title contains "Trash"  %}
+    
+    <div class="col-6 p-1">
+        <a href="{{collection.url}}">
+        <div class="product-card">
+          <img src="{{ collection.image | img_url: 'master'}}" alt="{{ product.title | escape}}" >
+              <div class="product-card-title d-flex justify-content-between align-items-center">
+                  <h3>{{ collection.title | downcase }}</h3>  
+              </div>
+            </div>
+          </a>
+      </div>
+    
+      {% endif %}
+      {% endfor %}
+    </div>
+    </nav>
+
+    <div class="footer-menu">
+
+    </div>
+</div>

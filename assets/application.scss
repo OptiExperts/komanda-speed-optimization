@@ -1,0 +1,2615 @@
+
+/* START VARIABLES */
+@font-face {
+    font-family: 'Aeroport Mono';
+    src: url('AeroportMono.eot');
+    src: url('AeroportMono.eot?#iefix') format('embedded-opentype'),
+        url('AeroportMono.woff2') format('woff2'),
+        url('AeroportMono.woff') format('woff'),
+        url('AeroportMono.ttf') format('truetype'),
+        url('AeroportMono.svg#AeroportMono') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Aeroport';
+    src: url('Aeroport.eot');
+    src: url('Aeroport.eot?#iefix') format('embedded-opentype'),
+        url('Aeroport.woff2') format('woff2'),
+        url('Aeroport.woff') format('woff'),
+        url('Aeroport.ttf') format('truetype'),
+        url('Aeroport.svg#Aeroport') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@mixin phone {
+    @media  (max-width: 599px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media  (max-width: 990px) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media  (max-width: 1200px) {
+        @content;
+    }
+}
+
+
+body {
+background-color: #1B1C1D;
+color: #FFF;
+margin: 0;
+overflow-x: hidden;
+font-family: 'Aeroport';
+-webkit-font-smoothing: antialiased;
+
+}
+
+
+
+main {
+    padding-top: 55px;
+    @include phone {
+       overflow-x: hidden !important;
+       width: 100% !important;
+        
+    }
+}
+button {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    appearance: none;
+    box-shadow: none;
+    font: inherit;
+    outline: none;
+
+}
+input {
+    border: none;
+    line-height: normal;
+}
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+
+::selection {
+    color: #886AFF;
+}
+
+.lazyload,.lazyloading{opacity:0}
+.lazyloaded{opacity:1;transition:opacity.3s}
+
+/* Header*/
+
+.header {
+    position: fixed;
+    width: 100%;
+    background-color: #1B1C1D;
+    z-index: 10;
+
+    @include phone{
+       overflow-x: hidden;
+    }
+}
+
+
+
+
+header {
+margin: 0 ;
+font-size: 22px;
+font-weight: 700;
+line-height: 30px;
+letter-spacing: 0em;
+text-align: left;
+padding: 0 12% 0 5%;
+
+@include phone {
+    font-size: 1.2em;
+}
+
+.logo-link:hover {
+color: #FFF;
+}
+}
+header span{
+font-family: 'Aeroport Mono' !important;
+font-weight: 400 !important;
+}
+
+
+
+.category { 
+color: #1B1C1D;
+
+}
+.category h2 {
+font-family: 'Aeroport';
+font-size: 50px;
+font-weight: 700;
+line-height: 68px;
+letter-spacing: 0em;
+text-align: left;
+
+}
+#trash1, #trash2, #trash3  {
+cursor: pointer;
+font-family: 'Aeroport Mono' !important;
+text-transform: lowercase;
+font-size: 1em !important;
+font-weight: 400 !important;
+padding: 1em;
+}
+#col1, #col2, #col3 {
+display: none;
+}
+
+h3 {
+font-family: 'Aeroport';
+font-size: 50px;
+font-weight: 700;
+line-height: 68px;
+letter-spacing: 0em;
+text-align: left;
+
+}
+/*     menu        */
+.menu-button {
+    position: absolute;
+    font-family: 'Aeroport Mono';
+    font-weight: 400 ;
+    color: #fff;
+}
+.menu-header {
+    border-bottom: 1px solid #D9D9D9;
+    position: relative;
+
+    .yougood {
+        position: absolute;
+        background-color: #B0A4FA;
+        color: #FFF;
+        text-transform: lowercase;
+        font-size: 20px;
+        width: 100%;
+        text-align: center; 
+        padding: 5px 0 10px 0;
+        border-radius: 15px;
+        transition-duration: 5s;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); 
+    }
+}
+
+.menu-drawer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    min-height: 100vh;
+    width: 100%;
+    z-index: 99;
+    max-width: 350px;
+    background-color: #fff;
+    border-radius: 18px 0 0 18px;
+    color: #1B1C1D;
+    padding: 20px;
+    transition-duration: 1s;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); 
+    box-shadow: 0px 6.62252px 16.5563px 3.31126px rgba(27, 28, 29, 0.25);
+
+    a{
+        color: #1B1C1D;
+    }
+    ul {
+        padding: 0;
+    }
+    
+  
+
+@include phone {
+    position: fixed;
+    width: calc(100vw - 50px);
+}
+}
+.menu-drawer.hidden {
+    transform: translateX(100%);
+}
+.menu-drawer.hidden::before{
+    opacity: 0;
+}
+
+.menu-drawer-inner {
+   
+    .navigation-menu {
+        list-style: none;
+        font-family: 'Aeroport';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 30px;
+        line-height: 35px;
+        color: #1B1C1D; 
+        text-transform: lowercase;
+li { 
+    padding: 10px 3px;
+    border-bottom: 1px solid #D9D9D9;
+
+}
+    }
+    .product-card {
+      
+        h3 {
+            @include phone {
+                font-size: 1em;
+                text-align: center;
+                padding: 3px;
+            }
+            
+        }
+    }
+    .arrow-front-page {
+       
+        @include phone {
+            display: none;
+        }
+       
+    }
+}
+
+/* Hero */
+.hero { 
+    background-color: #1B1C1D;
+    background-image: url('bg-hero.png');
+    width: 100%;
+    height: 90vh;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-position: center;
+     background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    border-radius: 30px;
+    @include tablet {
+        background-image: url('bg-hero-m.png');
+        
+    }
+    @include phone {
+       
+        height: 80vh;
+        }
+    h1 {
+        font-family: 'Aeroport';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 55px;
+        line-height: 65px;
+        color: #fff;
+        text-align: center;
+        text-transform: lowercase;
+        @include phone {
+
+        font-size: 25px;
+        line-height: 25px;
+        }
+    }
+    a {
+        font-family: 'Aeroport';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 30px;
+        padding: 1px 50px;
+        text-transform: none;
+        text-align: center;
+        @include phone {
+            padding: 1px 10px 3px 20px;
+            font-size: 22px;
+            font-weight: 700;
+        }
+    }
+    .checkout-button:hover {
+        background-color: #1B1C1D;
+
+    }
+    h3 {
+        font-family: 'Aeroport Mono';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 45px;
+        line-height: 55px;
+        text-align: center;
+        text-transform: lowercase;
+        color: #FFFFFF;
+        @include phone {
+
+            font-size: 23px;
+            line-height: normal;
+            }
+
+    }
+
+    #herosprite-image {
+        height: 100px;
+        width: 158px;
+        background: url('logoeyean.png')
+          0px 0px;
+        animation: play 1.8s steps(7) infinite;
+        animation-delay: 1s;
+      }
+}
+
+/* Second Section*/
+.home-pros { 
+    padding: 0 5%;
+    @include phone {
+        padding: 3%;
+    }
+    img {
+        max-width: 200px;
+    @include tablet {
+        max-width: 160px;
+    }
+    @include phone {
+        max-width: 120px;
+    }
+    }
+}
+
+.home-pros-section {
+    text-transform: lowercase;
+    padding-left: 3%;
+    padding-right: 3%;
+    margin-bottom: 5%;
+    @include tablet {
+        padding: 2% 1% 4% 1%;
+        border-bottom: 1px solid #fff;
+        margin: 0;
+       
+    }
+    &:last-child {
+        border: none;
+    }
+
+
+    .pros-titel {
+        font-family: 'Aeroport';
+        font-size: 35px;
+        font-weight: 700;
+        line-height: 30px;
+        letter-spacing: 0em;
+        text-align: center;
+        padding-top: 3%;
+        color: #B8A5F4;
+        @include tablet{ 
+
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 30px;
+            text-align: left;
+            padding-left: 5%;
+    
+            } 
+    
+
+        @include phone{ 
+        font-size: 20px;
+        line-height: 22px;
+        
+
+        } 
+
+    }
+  
+
+    .pros-description {
+        padding-top: 2%;
+        font-family: 'Aeroport Mono';
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 30px;
+        letter-spacing: 0em;
+        text-align: center;
+        @include tablet { 
+            font-size: 18px;
+            line-height: 20px;
+            text-align: left;
+            padding-right: 10%;
+            padding-left: 5%;
+        }
+        @include phone { 
+            font-size: 12px;
+            line-height: 16px;
+            
+        }
+
+    }
+
+}
+
+/* Cicles Main Page */
+.collection-section-bg {
+    background-color: #fff;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    color: #1B1C1D;
+
+}
+ .mainpage-headers {
+        font-family: 'Aeroport';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 35px;
+        line-height: 35px;
+        text-transform: lowercase;
+        color: #886AFF;
+        padding-bottom: 20px;
+    
+
+@include phone {
+    font-size: 25px;
+    line-height: 34px;
+    text-align: center;
+}
+
+}
+
+.main-collection-circles { 
+    overflow-x: scroll;
+    overflow-y:hidden ;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    cursor: grab;
+    @include phone {
+        gap: 20px;
+    }
+
+    &::-webkit-scrollbar {
+        display: none;
+      }
+      &::-webkit-scrollbar-track {
+        display: none;
+      }
+      &::-webkit-scrollbar-thumb {
+        display: none;
+    
+      }
+      scrollbar-width: none;
+  
+a {
+    color: #1B1C1D;
+}
+.circle-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-width: max-content;
+    @include phone {
+        min-width: auto;
+    }
+}
+    .collection-image {
+        img { 
+            width: 69px; 
+            height: 69px; 
+            border-radius: 50%;
+            @include phone{
+                width: 65px; 
+            height: 65px;
+            }
+          
+        }
+
+    }
+    .rooms-image {
+        img {
+            width: 200px;
+            height: 200px;
+            
+            border-radius: 10px;
+            @include phone{
+                width: 145px;
+            height: 145px;
+            }
+        }
+    }
+    .collection-title {
+        word-break: keep-all;
+        text-transform: lowercase;
+        line-height: 1;
+     
+    }
+    .active {
+        cursor: grabbing !important;
+        transform: scale(1);
+    }
+   
+}
+
+/* Product list*/
+.product-list-bg {
+    background-color: #fff;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    color: #1B1C1D;
+    a {
+        color: #1B1C1D;
+    }
+    .product-card-wrapper {
+        display: none;
+
+    }
+    .product-card-wrapper:nth-child(1),.product-card-wrapper:nth-child(2), .product-card-wrapper:nth-child(3),.product-card-wrapper:nth-child(4), .product-card-wrapper:nth-child(5),.product-card-wrapper:nth-child(6), .product-card-wrapper:nth-child(7),.product-card-wrapper:nth-child(8), .product-card-wrapper:nth-child(9),.product-card-wrapper:nth-child(10), .product-card-wrapper:nth-child(11),.product-card-wrapper:nth-child(12) {
+        display: block;
+
+    }
+
+}
+
+
+
+/* Product page */
+.product-template {
+    border-radius: 50px;
+    background-color: #FFF;
+    color: #1B1C1D;
+    padding-top: 3%;
+    overflow-x: hidden !important;
+    @include phone {
+        padding: 0;
+    }
+    .container {
+        @include phone {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+    }
+}
+.product-image {
+    padding: 30px 5%;
+    position: relative;
+    @include phone {
+        padding: 0;
+        
+    }
+    img {
+        @include phone {
+            border-radius: 50px !important;
+            
+        }
+
+    }
+}
+
+.product-option-row {
+    position: relative;
+    user-select: none;
+    cursor: pointer;
+
+}
+
+.swiper-container-product-page {
+    overflow: hidden;
+    max-width: 600px;
+    max-height: 100%;
+    z-index: 4;
+    position: relative;
+    
+    
+}
+.product-template {
+    .swiper-button-next::before {
+        background: url('cursor-arrow-right.svg') 24px center no-repeat;
+        content: "";
+        opacity: 0.25;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transition: opacity 0.15s;
+        background-position: calc(100%-30px);
+       
+    }
+    .swiper-button-prev::before {
+        background: url('cursor-arrow-left.svg') 24px center no-repeat;
+        content: "";
+        opacity: 0.25;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: opacity 0.15s;
+
+      
+    }
+}
+
+.product-image:hover .swiper-button-next::before ,
+.product-image:hover .swiper-button-prev::before { 
+    opacity: 0;
+
+}
+
+
+.dnone{
+    display: none;
+}
+
+.loader {position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #fff; 
+    @include phone {
+        width: 100%;
+        height: 390px;
+        z-index: 3;
+        
+    }
+}
+
+#sprite-image {
+    height: 100px;
+    width: 158px;
+    background: url('logoloader.jpg')
+      0px 0px;
+    animation: play .8s steps(7) infinite;
+  }
+
+  @keyframes play {
+    100% {
+      background-position: -1108px;
+    }
+  }
+/* Product description */
+
+.arrow-back-page {
+    border: 2px solid #D9D9D9;
+    padding: 2px 13px 5px 13px;
+    border-radius: 50px;
+    margin-top: 100px;
+    cursor: pointer;
+    &:hover {
+        background-color: #886AFF;
+        border: 2px solid #886AFF;
+    } 
+   
+}
+
+.product-price {
+    font-family: 'Aeroport';
+    font-size: 25px;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 0em;
+    text-align: left;
+  @include phone {
+    font-size: 23px;
+  }
+
+}
+.save-price {
+    font-size: 20px;
+    color: #886AFF;
+}
+
+.compare-price {
+    font-size: 20px;
+    position: relative;
+    color: #1B1C1D;
+}
+.compare-price:before {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: -0.3em;
+    width: calc(100% + 0.3em);
+    height: 1.5px;
+    background-color: #1B1C1D;
+}
+
+.shipping {
+    font-family: 'Aeroport';
+    font-size: 15px;
+font-weight: 700;
+text-align: center;
+padding-bottom: 18px;
+@include phone {
+    padding-bottom: 10px;
+}
+
+img {
+    width: 40px;
+    padding-right: 5px;
+}
+}
+
+#AddToCart {
+    font-family: 'Aeroport';
+font-size: 20px;
+font-weight: 700;
+line-height: normal;
+letter-spacing: 0em;
+text-align: center;
+text-transform: lowercase;
+color: #1B1C1D;
+background-color: #8BF5C2;
+box-sizing: border-box;
+border-radius: 50px;
+width: 100%;
+padding: 2%;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 20px;
+
+@include phone {
+    padding: 1px 40px;
+}
+
+
+
+
+}
+#AddToCart:hover {
+    background-color: #886AFF;
+    color: #fff;
+
+}
+
+
+.disabledButton {
+    background-color: #d8d8d8 !important;
+    border: 2px solid #1B1C1D;
+  }
+
+.product-option-label {
+   
+    text-transform: lowercase;
+    font-family: 'Aeroport';
+font-size: 20px;
+font-weight: 700;
+line-height: 27px;
+letter-spacing: 0em;
+text-align: left;
+padding-bottom: 2%;
+margin-left: 1%;
+
+
+
+  }
+
+  .product-option-list{
+    display: flex;
+flex-wrap: wrap;
+gap: 10px;
+@include phone {
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+      }
+      &::-webkit-scrollbar-track {
+        display: none;
+      }
+      &::-webkit-scrollbar-thumb {
+        display: none;
+      }
+      z-index: 4;
+  
+
+}
+}
+.variantBtn{
+    border: 2px solid #D9D9D9;
+    border-radius: 50px;
+    font-family: 'Aeroport';
+font-size: 16px;
+font-weight: 400;
+line-height: 22px;
+letter-spacing: 0em;
+text-transform: lowercase;
+text-align: center;
+padding: 6px 16px;
+text-align: center;
+margin-bottom: 3%;
+min-width: fit-content;
+cursor: pointer;
+@include phone {
+    margin-top: 0;
+    margin-bottom: 5px;
+  
+
+}
+}
+.variantBtn:hover{
+    border: 2px solid #886AFF;
+    color: #886AFF;
+}
+
+
+.clicked{
+    background-color: #886AFF;
+    color: #fff !important;
+    border: 2px solid #886AFF !important;
+
+  }
+
+.size-chart-button {
+    font-family: 'Aeroport';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 20px;
+padding-bottom: 2px;
+text-align: right;
+cursor: pointer;
+color: #886AFF;
+position: absolute;
+top: 10px;
+right: 0;
+text-transform: lowercase;
+z-index: 9;
+@include phone {
+    right: 3%;
+    top: 7px;
+    z-index: 2;
+}
+
+}
+.size-chart-button:hover {
+    color: #1B1C1D;
+}
+
+.add-to-cart-form {
+    position: relative;
+    @include phone {
+        padding: 0 3% 3%3% !important;
+        
+    }
+    
+}
+
+.product-decsription {
+    a {
+        color: #1B1C1D;
+    }
+    @include phone {
+        text-align: center;
+    }
+     img {
+       width: auto;
+       height: 15px;
+     }
+    h1 {
+    text-transform: lowercase;
+    font-family: 'Aeroport';
+font-size: 40px;
+font-weight: 700;
+line-height: 40px;
+letter-spacing: 0em;
+text-align: left;
+padding-top: 2%;
+color: #886AFF;
+@include phone {
+    font-size: 25px;
+    line-height: 34px;
+    text-align: center;
+    padding-top: 0;
+    margin: 0;
+  
+
+}
+
+
+
+}}
+.collection-circle {
+    padding: 0% 3% 2% 0;
+
+    img{
+        width: 60px;
+        height: 60px; 
+        border-radius: 50%;
+    }
+    .collection-title {
+        text-transform: lowercase;
+        font-family: 'Aeroport';
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 21px;
+        letter-spacing: 0em;
+        text-align: left;
+        padding: 5%;
+       
+
+
+    }
+}
+
+/* Dropdown */
+.accor-wrapper {
+    margin: 0 14%;
+    border: none !important;
+}
+
+.accordion .accordion-item  {
+    border: none !important;
+    @include phone {
+        margin: 0 3%;
+    }
+  }
+  
+  
+  
+  .accordion button {
+    position: relative;
+    display: block;
+    text-align: left;
+    width: 100%;
+    padding: 5px 0 10px 0;
+    color: #1B1C1D;
+    font-size: 1.5rem;
+    font-family: 'Aeroport';
+    border-top: 2px solid #D9D9D9;
+    border-bottom: 2px solid #D9D9D9;
+  
+    
+  }
+  
+  .accordion button:hover,
+  .accordion button:focus {
+    cursor: pointer;
+    color: #1B1C1D;
+  }
+  
+  .accordion button:hover::after,
+  .accordion button:focus::after {
+    cursor: pointer;
+    color: #1B1C1D;
+  
+  }
+  
+ 
+  .accordion-title {
+    font-family: 'Aeroport';
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0em;
+    text-align: left;
+    
+  }
+  .accordion-content {
+    font-family: 'Aeroport';
+  font-size: 18px;
+  font-weight: 400;
+  border-bottom: 2px solid #D9D9D9;
+  letter-spacing: 0em;
+  text-align: left;
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+  
+  }
+  
+  .accordion button .icon {
+    display: inline-block;
+    position: absolute;
+    top: 15px;
+    right: 0;
+    width: 22px;
+    height: 22px;
+    
+  }
+  
+  .accordion button .icon::before {
+    display: block;
+    position: absolute;
+    content: '';
+    top: 9px;
+    left: 5px;
+    width: 10px;
+    height: 2px;
+    background: currentColor;
+  }
+  .accordion button .icon::after {
+    display: block;
+    position: absolute;
+    content: '';
+    top: 5px;
+    left: 9px;
+    width: 2px;
+    height: 10px;
+    background: currentColor;
+  }
+  
+  .accordion button[aria-expanded='true'] {
+    color: #1B1C1D;
+    border-bottom: none;
+  }
+  .accordion button[aria-expanded='true'] .icon::after {
+    width: 0;
+  }
+  .accordion button[aria-expanded='true'] + .accordion-content {
+    opacity: 1;
+    max-height: 100%;
+    transition: all 200ms linear;
+    will-change: opacity, max-height;
+  }
+  .accordion .accordion-content {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 200ms linear, max-height 200ms linear;
+    will-change: opacity, max-height;
+  }
+/* Collection page */
+
+.product-card  {
+    border-radius: 20px;
+    background-color: #FFF;
+    box-shadow: 0px 1.85392px 1.85392px rgba(0, 0, 0, 0.25);
+    position: relative;
+    .salebadge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #1B1C1D;
+        border-radius: 30px;
+        color: #fff;
+        font-family: 'Aeroport';
+        font-weight: 700;
+        font-size: 15px;
+        padding: 0 5px;
+
+    }
+      
+        img {
+            width: 100%;
+            height: auto !important;
+            border-radius: 20px;
+            outline-style: none;
+            box-shadow: none;
+            border-color: transparent;
+            object-fit: cover;
+            border-radius: 20px 20px 0 0 !important;
+           
+        }
+    
+    .product-card-title {
+       
+        padding: 2% 5%;
+
+       
+    }
+    
+}
+.product-card h3 {
+    font-family: 'Aeroport';
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 27px;
+    letter-spacing: 0em;
+    text-align: left;
+    @include phone {
+    font-size: 13px;
+    line-height: 12px;
+
+    }
+    
+}
+.product-card-price {
+    font-family: 'Aeroport';
+    font-size: 45px;
+    font-weight: 300;
+    line-height: 62px;
+    letter-spacing: 0em;
+    text-align: left;    
+
+    @include phone { 
+  
+        font-size: 12px;
+        line-height: 16px;
+    }
+    
+
+}
+
+.product-image-wrapper {
+    padding-top: 132%;
+    display: block;
+   
+    position: relative;
+    @include phone { 
+  
+        padding-top: 150%;
+    }
+    
+
+}
+.swiper-container {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+.swiper-slide {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    position: relative;
+
+    user-select: none;
+    img {
+        width: 100%;
+        height: auto !important;
+        border-radius: 20px;
+        outline-style: none;
+     
+        box-shadow: none;
+        border-color: transparent;
+        object-fit: cover;
+    }
+}
+
+.swiper-button-prev {
+    cursor: url('cursor-arrow-left.svg') 15 8, auto;
+    
+}
+.swiper-button-next {
+    cursor: url('cursor-arrow-right.svg') 15 8, auto;
+    
+}
+.swiper-button-prev, .swiper-button-next {
+    position: absolute;
+    top: 0;
+    width: 15%;
+    height: 100%;
+    margin-top: 0;
+    outline-style: none;
+    box-shadow: none;
+    border-color: transparent;
+
+    &::after {
+        content: none;
+    }
+
+    @include phone {
+        opacity: 0 !important;
+        
+    }
+}
+.product-card-title {
+    position: relative;
+   
+   .product-card-price {
+    font-family: 'Aeroport';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 25px;
+    line-height: 34px;
+    color: #1B1C1D;
+    @include phone { 
+  
+        font-size: 18px;
+        line-height: 20px;
+    }
+
+   }
+
+    .add-button span { 
+        font-family: 'Aeroport';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        text-transform: lowercase;
+        color: #1B1C1D;
+        border: 2px solid #D9D9D9;
+        background-color: #fff;
+        box-sizing: border-box;
+        border-radius: 50px;
+        padding: 1px 20px 5px 20px;
+    
+
+        @include phone { 
+        
+        font-size: 12px;
+        line-height: 12px;
+        padding: 1px 20px 3px 20px;
+        border: 2px solid #D9D9D9;
+
+        }
+      
+    
+    }
+    .add-button span:hover{
+        color: #fff;
+        background-color: #886AFF;
+        border: 2px solid #886AFF;
+    
+    }
+
+}
+
+.big-button {
+    color: #fff !important;
+    background-color: #886AFF;
+    font-family: 'Aeroport';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 20px;
+    text-transform: lowercase;
+    padding: 15px 120px 25px 120px;
+    border-radius: 50px;
+    cursor: pointer;
+    
+    &:hover {
+        background-color: #1B1C1D;
+        @include phone{
+            background-color: #886AFF;
+        }
+    } 
+    @include phone {
+        font-size: 20px;
+        line-height: 30px;
+        padding: 2px 80px 5px 80px;
+
+    }
+
+}
+
+.product-card-type {
+    display: none;
+}
+
+
+
+/*Mini Cart*/
+.sum-field {
+    border-top: 2px solid #D9D9D9;
+    padding-top: 5px;
+} 
+.contin {
+    text-decoration: underline;
+    text-align: center;
+    cursor: pointer;
+}
+.freeship {
+    padding-top: 5px;
+    .anonce {
+        font-size: 15px;
+        padding-bottom: 5px;
+        text-align: center;
+    }
+    .progress-line {
+        height: 10px; 
+        width:100%; 
+        background-color: #d9d9d9; 
+        position: relative;
+
+        .progress-bar{
+            height: 10px; 
+            background-color: #8BF5C2; 
+            position: relative;
+
+        }
+    }
+
+}
+
+
+.mini-cart.hidden{
+    transform: translateX(100%);
+
+    .mini-cart-close-button {
+        opacity: 0;
+        transition: none;
+    }
+}
+.mini-cart.hidden::before{
+    opacity: 0;
+}
+.mini-cart {
+    .discover h2{
+        font-family: 'Aeroport';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 45px;
+        text-align: left;
+        color: #1B1C1D;
+    }
+    .payment-methods {
+        gap: 3px;
+        img {
+        width: 60px;
+        height: auto;
+        border: 1px solid #D9D9D9;
+        border-radius: 50px;
+        
+       }}
+    a {
+        color: #1B1C1D;
+    }
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    min-height: 100vh;
+    width: 100%;
+    z-index: 999;
+    max-width: 420px;
+    background-color: #fff;
+    border-radius: 18px 0 0 18px;
+    color: #1B1C1D;
+    padding: 20px;
+    transition-duration: 1s;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); 
+    box-shadow: 0px 6.62252px 16.5563px 3.31126px rgba(27, 28, 29, 0.25);
+
+   
+    @include phone {
+        position: fixed;
+        width: 100vw ;
+        border-radius: 18px;
+    }
+}
+.mini-cart, .mini-cart::before{
+    transition-duration: 1s;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+} 
+
+.cart-form{
+    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+    overflow-y: scroll;
+       
+    &::-webkit-scrollbar {
+        display: none;
+      }
+      &::-webkit-scrollbar-track {
+        display: none;
+      }
+      &::-webkit-scrollbar-thumb {
+        display: none;
+      }
+      scrollbar-width: none;
+
+}
+
+
+.cart-button {
+    cursor: pointer;
+    position: relative;
+    transition: 0.15s;
+    color: #fff; 
+    margin-right: 3%;
+
+ 
+
+ .cart-button-text {
+    font-family: 'Aeroport Mono';
+    position: absolute;
+    top: 53%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: center;
+ }
+
+}
+.mini-cart-image-wrapper{
+    width: 120px;
+    margin-right: 10px;
+
+    img{
+        width: 100%;
+    }
+}
+.mini-cart-rows {
+   
+    z-index: 999;
+
+}
+
+.mini-cart-item {
+    display: flex;
+    padding: 10px 0;
+
+}
+.mini-cart-item-right {
+    flex: 1;
+    position: relative;
+
+    .x-button {
+        position: absolute;
+        top: -10px;
+        right: 0;
+
+    }
+    .mini-cart-title{
+        font-size: 15px;
+        line-height: 24px;
+        @include phone {
+            font-size: 12px;
+        line-height: 18px;
+        }
+        .mini-titel {
+            font-weight: 900 !important;
+            font-size: 20px;
+            text-transform: lowercase;
+            @include phone {
+                font-size: 18px;
+            line-height: 18px;
+            }
+   
+            
+        }
+ 
+
+    }
+    
+}
+.open-cart-button, .open-menu-button{
+    font-family: 'Aeroport';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 29px;
+    text-transform: lowercase;
+    color: #1B1C1D;
+    
+} 
+
+ 
+
+.checkout-button {
+     font-family: 'Aeroport';
+font-size: 25px;
+font-weight: 400;
+line-height: 40px;
+letter-spacing: 0em;
+text-align: center;
+text-transform: lowercase;
+color: #1B1C1D;
+background-color: #8BF5C2;
+box-sizing: border-box;
+border-radius: 50px;
+width: 100%;
+padding: 1px 4px 4px 9px;
+
+ &:hover {
+    background-color: #886AFF;
+    color: #fff !important;
+ }
+}
+
+.checkout-button:hover {
+   color: #886AFF;
+
+}
+
+.mini-cart-price {
+
+font-family: 'Aeroport';
+font-style: normal;
+font-weight: 400;
+font-size: 23px;
+line-height: 34px;
+text-align: right;
+padding-top: 2%;
+color: #1B1C1D;
+}
+.mini-cart-quantity {
+    height: 30px;
+    width: 90px;
+    overflow: hidden;
+    color: #1B1C1D;
+    font-size: 15px !important;
+    margin-top: 8px;
+    position: relative;
+    border: 1px solid #D9D9D9;
+    border-radius: 40px;
+    line-height: normal;
+
+    input {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+       
+    }
+
+    .mini-cart-quantity-button {
+        width: 25px;
+        position: absolute;
+        top: -4px;
+        bottom: 0;
+        left: 0;
+        cursor: pointer;
+    }
+    .mini-cart-quantity-button:last-of-type {
+        left: auto;
+        right: 0;
+    }
+}
+.checkout-subtotal  {    
+font-family: 'Aeroport';
+font-style: normal;
+font-weight: 700;
+font-size: 30px;
+line-height: 41px;
+text-transform: lowercase;
+border-top: 2px solid #D9D9D9;
+padding-top: 5px;
+color: #1B1C1D;
+
+.sub-money {
+    color: #886AFF;
+    font-family: 'Aeroport';
+font-style: normal;
+font-weight: 500;
+
+}
+}
+
+
+
+.outside {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    background-color: #1B1C1D;
+    opacity: 0.4;
+    left: 0;
+}
+
+
+.cart-form {
+    .product-card {
+        h3 {
+            @include phone {
+                font-size: 1em;
+                text-align: center;
+                padding: 3px;
+            }
+            
+        }
+    }
+    .arrow-front-page {
+       
+        @include phone {
+            display: none;
+        }
+       
+    }
+
+}
+/*Recommendation*/
+
+
+.recommendation-container {
+ 
+    text-align: center;
+    @include phone {
+        padding: 3% !important;
+    }
+    a {
+        color: #1B1C1D;
+    }
+    img {
+        border-radius: 20px 20px 0 0 !important;
+       
+    }
+
+    h4 {
+        font-family: 'Aeroport';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 40px;
+        line-height: 50px;
+        text-transform: lowercase;
+        color: #886AFF;
+        text-align: left;
+
+    }
+    .product-card {
+    position: relative;
+    .salebadge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #1B1C1D;
+        border-radius: 30px;
+        color: #fff;
+        font-family: 'Aeroport';
+        font-weight: 700;
+        font-size: 15px;
+        padding: 0 5px;
+
+    }
+    }
+
+    .product-card-title h3{
+        font-size: 20px;
+        text-transform: lowercase;
+        line-height: 28px;
+       border: none;
+       padding-bottom: 2%;
+       color: #1B1C1D;
+       @include phone {
+        font-family: 'Aeroport';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 12px;
+       }
+    }
+   
+   
+   
+    img {
+        max-width: 100%;
+
+    }
+}
+
+
+   /*     Cart */
+
+
+   .cart-empty-page {
+  
+   
+  h2{
+    font-family: 'Aeroport';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 45px;
+    text-align: center;
+    
+    color: #1B1C1D;
+    @include phone {
+        font-weight: 500;
+    font-size: 25px;
+    line-height: 34px;
+    }
+}  
+    .checkout-button {
+   padding: 1px 60px 4px 60px;
+   
+
+    }
+    h4 {
+        font-family: 'Aeroport';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 50px;
+        line-height: 68px;
+        text-align: left;
+        text-transform: lowercase;
+        color: #886AFF;
+        @include phone {
+            font-weight: 500;
+        font-size: 30px;
+        line-height: 38px;
+        }
+       }
+    }
+
+   #cart {
+    position: relative;
+    background-color: #fff;
+    border-radius: 50px;
+    padding: 3% 8%;
+    @include tablet {
+        padding: 3% 1%;
+    }
+    .arrow-back-page {
+        position: absolute;
+        top: -45px;
+        left: 30px;
+    }
+    a {
+        color: #1B1C1D;
+    }
+    .sub-money  {
+        padding-left: 12px;
+    }
+    .cart-head {
+        font-family: 'Aeroport';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 30px;
+        line-height: 45px;
+        padding-bottom: 1%;
+        color: #1B1C1D;
+    }
+    .remove-all{
+        font-family: 'Aeroport';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 17px;
+        line-height: 22px;
+        text-align: right;
+        padding-top: 2%;
+
+        color: #1B1C1D;
+    }
+    .checkout-subtotal  {    
+        font-family: 'Aeroport';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 30px;
+        line-height: 41px;
+        text-transform: lowercase;
+        border-top: 2px solid #D9D9D9;
+        padding-top: 20px;
+        color: #1B1C1D;
+    }
+
+    .payment-methods img {
+        width: 60px;
+        height: auto;
+        border: 1px solid #D9D9D9;
+        border-radius: 50px;
+       }
+    
+   }
+.cart-table {
+    
+    .remove {
+        font-family: 'Aeroport';
+        font-weight: 700;
+        font-size: 1em;
+        line-height: 30px;
+        cursor: pointer;
+        color: #1B1C1D;
+        width: 20%;
+    }
+    .type-and-size {
+        font-family: 'Aeroport';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 25px;
+        text-transform: lowercase;
+       width: 100%!important;
+        color: #1B1C1D;
+        border-top: 2px solid #D9D9D9; 
+        padding-left: 20px;
+    }
+    .quantity {
+        width: 100%;
+        border-top: 2px solid #D9D9D9; 
+    }
+}
+.cart-table:last-child {
+    border-top: 2px solid #fff; 
+}
+   .image-and-titel {
+    font-family: 'Aeroport';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    text-transform: lowercase;
+    width: 100%;
+    border-top: 2px solid #D9D9D9; 
+    color: #1B1C1D;
+
+       img {
+           max-width: 100px;
+       }
+   }
+   .cart-money {
+    font-family: 'Aeroport';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 54px;
+    text-align: right;
+    width: 100%;
+    border-top: 2px solid #D9D9D9; 
+    color: #1B1C1D;
+   }
+   .cart-left {
+    font-family: 'Aeroport';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 34px;
+    
+    color: #1B1C1D;
+
+   }
+ 
+.cart-margin {
+    margin-right: 5%;
+}
+   
+
+   /*     FOOter */
+  
+   footer{
+    color: #FFF;
+    padding: 3%;
+    font-size: 20px;
+    @include tablet{
+        padding: 5% 3%;
+    }
+    @include phone{
+        padding: 5% 1%;
+    }
+
+    a:hover {
+        color: #fff;
+        text-decoration: underline;
+    }
+    li {
+    list-style: none;
+    color: #FFF;
+    font-size: 20px;
+    line-height: 35px;
+    @include tablet {
+        font-size: 28px;
+        line-height: 40px;
+    }
+    @include phone {
+        font-size: 14px;
+        line-height: 23px;
+    }
+    }
+    ul {
+        @include phone{
+            padding: 0;
+            margin: 3% 0;
+        }
+    }
+    input {
+        width: 100%;
+        border: 1px solid #FFF;
+        color: #fff;
+        padding: 2%;
+        background-color: #1B1C1D;
+        
+    
+    &::-webkit-input-placeholder { /* Edge */
+        color: #FFF;
+       
+       
+      }
+      &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: #FFF;
+        opacity: 1;
+     }
+     &::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: #FFF;
+        opacity: 1;
+     }
+     
+      
+      &:-ms-input-placeholder { /* Internet Explorer */
+        color: #FFF;
+       
+      }
+      
+      &::placeholder {
+        color: #FFF;
+       
+      }
+    }
+    h6 {
+        font-family: 'Aeroport';
+        font-weight: 700;
+        font-size: 35px;
+        text-transform: lowercase;
+        line-height: 34.14px;
+        @include phone {
+            font-size: 22px;
+            line-height: 18px;
+        }
+    }
+    p  {
+        font-family: 'Aeroport Mono';
+        font-weight: 400 !important;
+        font-size: 1em;
+        line-height: 30px;
+        text-transform: lowercase;
+        @include phone {
+            font-size: 16px;
+            line-height: 22px;
+            margin-bottom: 6%;
+        }
+    }
+    button {
+        font-family: 'Aeroport';
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: center;
+    text-transform: lowercase;
+    color: #1B1C1D;
+    background-color: #FFF;
+    box-sizing: border-box;
+    border-radius: 50px;
+    padding: 8px 85px;
+    margin-top: 3%;
+     &:hover{
+        background-color: #8BF5C2;
+     }
+    
+    @include phone {
+        width: 100%;
+        padding: 12px;
+        margin-top: 6%;
+    }
+    }
+
+    .site-pages, .policy-pages {
+    font-family: 'Aeroport';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 170.7%;
+    
+    color: #1B1C1D;
+    }
+    .last-row-footer {
+        padding-top: 5%;
+        @include phone {
+            padding-left: 3%;
+        }
+       .copy-text {
+        font-family: 'Aeroport';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 34px;
+       }
+      
+       .delivery img {
+        width: 80px;
+       }
+  
+    }
+    .payment-methods  {
+        gap: 2px;
+        @include phone {
+            padding-top: 3%;
+        }
+        img {
+            width: 60px;
+            height: auto;
+            border-radius: 36px;
+            @include phone {
+                width: 65px;
+                height: auto;
+            }
+           
+           }
+    }
+    .footer-extra {
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+        padding: 5% 0;
+        margin: 8% 0 3% 0;
+        h5 {
+            font-family: 'Aeroport';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 22px;
+            line-height: 27px;
+            text-transform: lowercase;
+            color: #FFFFFF;
+            @include tablet{
+                font-size: 30px;
+                line-height: 37px;
+            }
+            @include phone{
+                font-size: 22px;
+                line-height: 27px;
+            }
+        }
+        img {
+            height: 30px; 
+            width: auto;
+            @include tablet{
+                height: 45px; 
+                width: auto;
+            }
+            @include phone{
+                height: 30px; 
+                width: auto;
+            }
+        }
+        
+    }
+   }
+
+   /*About us*/
+   .about-us {
+    .about-1-us { 
+    background-color: #8BF5C2;
+    border-radius: 50px 50px 0 0;
+}
+    .about-2-us { 
+        background: linear-gradient(180deg, #8BF5C2 50%, #886AFF 50%);
+        .about-2-us-bg { 
+            background-color: #fff;
+            border-radius: 50px;
+            padding: 3% 0;
+        }
+    }
+    .about-3-us { 
+        background-color: #886AFF;
+        border-radius: 0 0 50px 50px ;
+        h1,h2,p,h5 {
+            color: #fff;
+        }
+        h2, h1 {
+            position: absolute;
+            word-spacing: 100vw;
+            @include phone {
+                position: relative;
+                word-spacing: normal;
+               }
+        }
+    }
+     h2, h1 {
+        font-family: 'Aeroport';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 60px;
+        line-height: 65px;
+        text-transform: lowercase;
+        color: #1B1C1D;
+        @include phone {
+         font-size: 34px;
+        line-height: 37px;
+        text-align: center;
+
+        }
+    }
+
+    .about-us-green {
+        position: relative;
+        img {
+           padding-top: 20%;
+           @include phone {
+            padding-top: 2%;
+           }
+        }
+        h2, h1 {
+            position: absolute;
+            padding-top: 3rem;
+            @include phone {
+                position: relative;
+                padding-top: 1rem;
+               }
+        }
+    }
+    h5{
+        font-family: 'Aeroport';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 30px;
+        line-height: 40px;
+        color: #1B1C1D;
+        @include phone {
+            font-size: 18px;
+            line-height: 25px;
+           }
+
+    }
+    p {
+        font-family: 'Aeroport';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 25px;
+        line-height: 40px;
+        color: #1B1C1D;
+        @include phone {
+            font-size: 16px;
+            line-height: 24px;
+           }
+
+    }
+    .green-button {
+        font-family: 'Aeroport';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 30px;
+        line-height: 65px;
+        text-transform: lowercase;
+        background: #8BF5C2;
+        border-radius: 50px;
+        color: #1B1C1D;
+        padding: 1px 50px 5px 50px;
+        min-width: max-content;
+        @include phone {
+            font-size: 22px;
+            padding: 3px 60px 8px 60px;
+          
+           }
+    }
+    .green-button:hover {
+   
+        background: #1B1C1D;
+        color: #FFFFFF;
+     
+    }
+    }
+/*Contac US*/
+
+    .contact-us {
+        background: linear-gradient(180deg, #8BF5C2 50%, #886AFF 50%);
+        border-radius: 50px;
+        @include tablet {
+            background: linear-gradient( 180deg, #B0A4FA 60%, #8BF5C2 40% );
+        }
+        h2, h1{
+            font-family: 'Aeroport';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 40px;
+            line-height: 55px;
+            color: #1B1C1D;
+            @include tablet {
+                text-align: center;
+            }
+            @include phone {
+                font-size: 34px;
+                line-height: 37px;
+                padding: 0 8%;
+            }
+
+        }
+        p{
+            font-family: 'Aeroport';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 30px;
+            /* or 150% */
+            color: #1B1C1D;
+        }
+        .contact-form-wrapper {
+            background-color: #B0A4FA;
+            border-radius: 50px;
+            padding: 5%;
+
+            @include phone {
+                padding-bottom: 10%;
+            }
+    
+        }
+        .left-contact-wrapper {
+            background-color: #8BF5C2;
+            border-radius: 50px 0 0 50px ;
+            padding: 10%;
+            @include tablet {
+                border-radius: 50px ;
+                padding: 5% 5% 10% 5%;
+
+              
+            }
+         
+
+            p{
+                padding-right: 20%;
+                margin-bottom: 8%;
+                
+                @include tablet {
+                    padding-right: 0 ;
+                  
+                }
+            }
+           
+        }
+        .follow-section {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            padding-top: 10%;
+            
+
+            @include tablet {
+                border-radius: 50px ;
+                background-color: #886AFF;
+                flex-wrap: wrap;
+                padding-top: 0;
+                padding: 10% 2%;
+            }
+           
+           h5 {
+            font-family: 'Aeroport';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 40px;
+            line-height: 40px;
+
+            color: #FFFFFF;
+            @include phone {
+            width: 100%;
+            text-align: center;
+            }
+           }
+        }
+        .white-button {
+            font-family: 'Aeroport';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 20px;
+            background-color: #fff;
+             color: #1B1C1D;
+             padding: 10px 25px;
+            text-transform: lowercase;
+            border-radius: 50px;
+
+            color: #1B1C1D;
+        }
+
+        input[type=text],input[type=email], textarea {
+            width: 100%;
+            border: 1px solid #1B1C1D;
+            padding: 2%;
+            background-color: #B0A4FA;
+            margin-bottom: 20px;
+            
+       
+        &::-webkit-input-placeholder { /* Edge */
+            color: #1B1C1D;
+           
+           
+          }
+          &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: #1B1C1D;
+            opacity: 1;
+         }
+         &::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: #1B1C1D;
+            opacity: 1;
+         }
+         
+          
+          &:-ms-input-placeholder { /* Internet Explorer */
+            color: #1B1C1D;
+           
+          }
+          
+          &::placeholder {
+            color: #1B1C1D;
+           
+          }
+        }
+          input[type=submit] {
+            font-family: 'Aeroport';
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 25px;
+        letter-spacing: 0em;
+        text-align: center;
+        text-transform: lowercase;
+        color: #1B1C1D;
+        background-color: #FFF;
+        box-sizing: border-box;
+        border-radius: 50px;
+        padding: 12px ;
+        width: 100%;
+        margin-top: 3%;
+         &:hover{
+            background-color: #8BF5C2;
+         }
+        
+        @include tablet {
+            width: 100%;
+        }
+        }
+    }
+   
+
+    /* Collection for Products*/
+     .collection-wrapper {
+        background-color: #FFF;
+        border-radius: 50px;
+        color: #886AFF;
+        span {
+            font-family: 'Aeroport';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+
+        color: #1B1C1D;
+        }
+        .arrow-back-page {
+            border: 2px solid #D9D9D9;
+            padding: 2px 13px 5px 13px;
+            border-radius: 50px;
+            margin-top: 0;
+            margin-right: 30px;
+            cursor: pointer;
+            &:hover {
+                background-color: #886AFF;
+                border: 2px solid #886AFF;
+            } 
+           
+        }
+        
+        
+
+        a {
+            color: #1B1C1D;
+        }
+        h1 {
+            text-transform: lowercase;
+             @include phone {
+                font-family: 'Aeroport';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 25px;
+            line-height: 34px;
+            text-align: center;
+
+            color: #886AFF;
+             }
+        }
+     }
+
+
+     /*Testimonail Section*/
+     .testi-title {
+        font-family: 'Aeroport';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 45px;
+        line-height: normal;
+        text-transform: lowercase;
+        color: #FFFFFF;
+        padding: 2% 5% 0 5%;
+
+        @include phone {
+            font-size: 30px;
+        }
+     }
+
+.testimonial {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    overflow-x: scroll;
+    padding: 2% 4%;
+    cursor: grab;
+
+    &::-webkit-scrollbar {
+        display: none;
+      }
+      &::-webkit-scrollbar-track {
+        display: none;
+      }
+      &::-webkit-scrollbar-thumb {
+        display: none;
+      }
+      scrollbar-width: none;
+
+    
+    .testimonial-card {
+        background-color: #fff;
+        border-radius: 20px;
+        max-width: 600px;
+        display: flex;
+       gap: 30px;
+        padding: 2%;
+        color: #1B1C1D;
+        @include phone {
+            gap: 10px;
+            padding: 3%;
+        }
+        .review-text {
+            display: flex;
+            flex-direction: column;
+            min-width: 250px;
+            gap: 10px;
+            @include phone {
+                min-width: 100px;
+            }
+            .name {
+                font-family: 'Aeroport';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 27px;
+            }
+            .date {
+                @include phone {
+                    font-size: 13px;
+                }
+            }
+            .review-words {
+                font-family: 'Aeroport';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 20px;
+                line-height: 27px;
+               
+
+                @include phone {
+                    font-size: 15px;
+                    line-height: 16px;
+                    padding-right: 0;
+                }
+
+        }
+
+            .starts {
+           
+            display: flex;
+            gap: 10px;
+            align-items: center;
+
+             img {
+                 height: 15px;
+                 width: auto;
+
+            }
+        }
+
+       
+    }
+    .review-image {
+        img {
+            border-radius: 20px;
+            max-height: 210;
+            width: auto;
+
+            @include phone {
+                width: 150px;
+                height: auto;
+            }
+        }
+    }
+    }
+}
+
+
+     /*Collections list*/
+     .collection-list-wrapper {
+        background-color: #FFF;
+        border-radius: 50px;
+        color: #1B1C1D;
+        h1, h2{
+            font-family: 'Aeroport';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 60px;
+            line-height: 82px;
+            color: #886AFF;
+            text-transform: lowercase;
+            @include phone {
+                font-size: 25px;
+                line-height: 34px;
+                text-align: center;
+            }
+        }
+        h3 {
+            font-family: 'Aeroport';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 1.5em;
+            line-height: 100%;
+            text-transform: lowercase;
+            color: #1B1C1D;
+            @include phone {
+                font-size: 15px;
+                line-height: 20px;
+                padding-top: 7px;
+            }
+            svg {
+                width: 10px !important;
+
+            }
+        }
+     
+     }
+     .arrow-front-page {
+        border: 2px solid #D9D9D9;
+        padding: 2px 13px 5px 13px !important;
+        border-radius: 50px;
+        cursor: pointer;
+       
+        &:hover {
+            background-color: #886AFF;
+            border: 2px solid #886AFF;
+        } 
+       
+      
+    }
+
+    .x-button {
+        cursor: pointer;
+    }
+
+    .errorwrapper {
+        background-color: #fff;
+        border-radius: 50px;
+        padding: 10% 0;
+        @include phone {
+            padding: 25% 0;
+        }
+        h1 {
+            font-family: 'Aeroport';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 55px;
+        text-align: center;
+        color: #000000;
+        @include phone {
+            font-size: 25px;
+            line-height: 35px;
+        }
+
+        }
+        .big-button  {
+            padding: 5px 100px 10px 100px;
+            @include phone {
+                font-size: 25px;
+                padding: 3px 100px 8px 100px;
+            }
+        }
+    
+    }
+
+    .shopify-policy__container {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 3% 5%;
+        font-size: 1.2em;
+        /* padding-right: 5%; */
+        background-color: #fff;
+        color: #000;
+        border-radius: 30px;
+        h1 {
+            font-size: 2.5em;
+            text-transform: lowercase;
+            font-weight: 700;
+
+            @include phone {
+                font-size: 2em;
+            }
+        }
+    }
