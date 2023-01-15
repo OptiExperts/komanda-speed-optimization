@@ -170,8 +170,8 @@
     {{ 'application.js' | asset_url | script_tag }}
     {{ 'lazysizes.min.js' | asset_url | script_tag }}
     
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DC9YLLEMRT"></script>
-    <script>
+    <script async type="lazyload2" data-src="https://www.googletagmanager.com/gtag/js?id=G-DC9YLLEMRT"></script>
+    <script type="lazyload2">
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -181,8 +181,8 @@
       gtag('config', 'G-DC9YLLEMRT');
     </script>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11040051745"></script>
-    <script>
+    <script async type="lazyload2" data-src="https://www.googletagmanager.com/gtag/js?id=AW-11040051745"></script>
+    <script type="lazyload2">
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -192,14 +192,14 @@
       gtag('config', 'AW-11040051745');
     </script>
     <!-- Event snippet for Покупка conversion page -->
-    <script>
+    <script type="lazyload2" data->
       gtag('event', 'conversion', {
         'send_to': 'AW-11040051745/vC72CN_-y4QYEKGkp5Ap',
         'transaction_id': ''
       });
     </script>
     <!-- Meta Pixel Code -->
-    <script>
+    <script type="lazyload2">
       !function(f, b, e, v, n, t, s) {
         if (f.fbq) 
           return;
