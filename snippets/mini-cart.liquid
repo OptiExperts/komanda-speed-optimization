@@ -113,7 +113,7 @@
             <div class="col-6 p-1">
                 <a href="{{collection.url}}">
                 <div class="product-card">
-                  <img  data-src="{{ collection.image | img_url: '720x'}}" data-srcset="{{ collection.image | img_url: '480x'}} 300w, {{ collection.image | img_url: '720x'}}600w,
+                  <img class="lazy2" data-src="{{ collection.image | img_url: '720x'}}" data-srcset="{{ collection.image | img_url: '480x'}} 300w, {{ collection.image | img_url: '720x'}}600w,
                   {{ collection.image | img_url: 'master'}} 900w" class="lazyload" alt="Buy {{ collection.title | escape}} canvas art" >
                       <div class="product-card-title d-flex justify-content-between align-items-center">
                           <h3>{{ collection.title | downcase }}</h3>  
