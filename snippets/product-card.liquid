@@ -2,7 +2,7 @@
   <a href="{{ product.url | within: collection }}">
     <div class="product-card">
       <div class="salebadge">30% OFF</div>
-      <img
+      <img width="100%" height="100%"
         data-src="{{ product.featured_image | img_url: '720x'}}"
         data-srcset="{{ product.featured_image | img_url: '180x'}} 300w,
                 {{ product.featured_image | img_url: '720x'}}600w,
