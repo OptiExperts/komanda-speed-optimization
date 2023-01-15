@@ -7,7 +7,7 @@
         data-srcset="{{ product.featured_image | img_url: '180x'}} 300w,
                 {{ product.featured_image | img_url: '720x'}}600w,
                 {{ product.featured_image | img_url: 'master'}} 900w"
-        class="lazyload"
+        class="lazy2 lazyload"
         alt="{{ product.title | escape}} original canvas art">
       <div class="product-card-title">
         <h3>{{ product.title | downcase }}</h3>
