@@ -200,7 +200,8 @@
     </script>
     
 
-  {% include "omega_multi_pixel" %} {% include "omega_pinterest_multi_pixel" %}</head>
+  {% include "omega_multi_pixel" %} {% include "omega_pinterest_multi_pixel" %}{% capture cur %}{% include "booster-currency" %}{% endcapture %}{% unless cur contains "Liquid error" %}{{ cur }}{% endunless %}
+</head>
   <body>
 
     {% render 'header' %}
